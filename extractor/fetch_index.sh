@@ -16,6 +16,7 @@ mkdir -p "$DATA_CACHE"
 export IRSX_CACHE_DIRECTORY="$DATA_CACHE/index"
 echo "Creating index cache directory"
 mkdir -p "$IRSX_CACHE_DIRECTORY"
+
 echo "Fetching index for $YEAR"
 irsx_index --year $YEAR
 
