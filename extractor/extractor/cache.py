@@ -74,6 +74,6 @@ class DirectoryCache(Cache):
 
     def put(self, object_id: str, content: str) -> str:
         path = os.path.join(self._path, f"{object_id}_public.xml")
-        with open(path, 'w') as xml:
+        with open(path, "w") as xml:
             xml.write(content)
         return content

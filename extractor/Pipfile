@@ -10,6 +10,8 @@ pylint = "*"
 black = "*"
 pytest = "*"
 rope = "*"
+bandit = "*"
+mypy = "*"
 
 [packages]
 irsx = "*"
@@ -19,7 +21,7 @@ cssselect = "*"
 requests = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
 
 [pipenv]
 allow_prereleases = true

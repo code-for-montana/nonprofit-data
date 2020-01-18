@@ -1,13 +1,14 @@
-from extractor import HTTPDownloader, Index, DirectoryCache, MemoryCache, Query, Result
 import io
+from . import HTTPDownloader, Index, DirectoryCache, MemoryCache, Result
 from .filing import Filing
 
 
 def run():
     result = Result(
-        HTTPDownloader("https://s3.amazonaws.com/irs-form-990", DirectoryCache()),
+        HTTPDownloader(
+            "https://s3.amazonaws.com/irs-form-990", DirectoryCache()
+        ),
         Index(io.open("fixtures/index.csv")),
-        Query(),
     )
     for filing in result:
         print("-----------------------------")
