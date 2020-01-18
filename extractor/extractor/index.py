@@ -63,8 +63,9 @@ class Index:
         index_file: TextIO,
         filters: Iterable[FilterCallback[IndexRecord]] = (),
     ):
-        records: List[IndexRecord] = []
+        self._filters = filters
 
+        records: List[IndexRecord] = []
         for row in csv.DictReader(index_file):
             record = IndexRecord(
                 return_id=row["RETURN_ID"],
@@ -78,7 +79,6 @@ class Index:
                 object_id=row["OBJECT_ID"],
             )
             records.append(record)
-
         self._records = records
 
     def __iter__(self) -> Iterator[IndexRecord]:

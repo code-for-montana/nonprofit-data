@@ -47,6 +47,7 @@ class Result:
         filters: Iterable[FilterCallback[Filing]] = (),
     ):
         self._downloader = downloader
+        self._filters = filters
         self._index = index
 
     def __iter__(self) -> Iterator[Filing]:
