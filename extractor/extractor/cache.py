@@ -10,7 +10,7 @@ class Cache:
     TODO: Should both methods return strings, or both TextIOs?
     """
 
-    def get(self, object_id: str) -> str:
+    def get(self, object_id: str) -> Optional[str]:
         raise NotImplementedError()
 
     def put(self, object_id: str, content: str) -> str:
@@ -27,7 +27,7 @@ class MemoryCache(Cache):
     def __init__(self):
         self._dict = {}
 
-    def get(self, object_id: str) -> str:
+    def get(self, object_id: str) -> Optional[str]:
         return self._dict.get(object_id, None)
 
     def put(self, object_id: str, content: str) -> str:
@@ -66,11 +66,12 @@ class DirectoryCache(Cache):
         os.mkdir(path)
         self._path = path
 
-    def get(self, object_id: str) -> str:
+    def get(self, object_id: str) -> Optional[str]:
         path = os.path.join(self._path, f"{object_id}_public.xml")
         if os.path.exists(path) and os.path.isfile(path):
             with open(path) as xml:
                 return xml.read()
+        return None
 
     def put(self, object_id: str, content: str) -> str:
         path = os.path.join(self._path, f"{object_id}_public.xml")

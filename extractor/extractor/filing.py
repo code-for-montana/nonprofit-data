@@ -1,6 +1,6 @@
 from __future__ import annotations
 import logging
-from lxml import etree
+from defusedxml import ElementTree
 import sys
 from typing import Dict, Optional, TextIO
 
@@ -31,7 +31,16 @@ class Filing:
 
     _namespaces: Dict[str, str]
 
-    _tree: etree.ElementTree
+    _tree: ElementTree
+
+    @staticmethod
+    def from_file(path: str,) -> Filing:
+        """
+        A factory primarily intended for testing and interactive (REPL or
+        Jupyter) use.
+        """
+        with open(path) as xmlFile:
+            return Filing(xmlFile)
 
     def __init__(
         self, xml_file: TextIO,
@@ -43,10 +52,25 @@ class Filing:
         content = xml_file.read()
         while not content.startswith("<"):
             content = content[1:]
-        content = content.encode("utf-8")
-        _logger.info(f"XML: '{content[:40]}'")
+        byteContent = content.encode("utf-8")
+        _logger.info(f"XML: '{str(byteContent[:40])}'")
 
-        self._tree = etree.fromstring(content)
+        self._tree = ElementTree.fromstring(byteContent)
+
+    def to_json(self):
+        # We're just going to do kind of a poor man's serialization here until
+        # we have time to think it through. Update this when you add a property.
+        return {
+            "activity_or_mission_description": self.activity_or_mission_description,
+            "formation_year": self.formation_year,
+            "gross_receipts": self.gross_receipts,
+            "employee_count": self.employee_count,
+            "principal_officer_name": self.principal_officer_name,
+            "us_address": self.us_address,
+            "us_city_name": self.us_city_name,
+            "us_zip_code": self.us_zip_code,
+            "website_address": self.website_address,
+        }
 
     @property
     def activity_or_mission_description(self) -> Optional[str]:
@@ -88,6 +112,10 @@ class Filing:
     @property
     def website_address(self) -> Optional[str]:
         return self.get_str("/IRS990/WebsiteAddressTxt")
+
+    # -----------------------------------------------#
+    # Helper methods, add new fields above this line #
+    # -----------------------------------------------#
 
     def get_str(self, path: str) -> Optional[str]:
         """
