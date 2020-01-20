@@ -1,16 +1,10 @@
 from __future__ import annotations
 from argparse import ArgumentParser, Namespace
-from dataclasses import dataclass, field, fields
+import dataclasses as dc
 import json
 from typing import Any, Dict, Mapping, NamedTuple
 from .filing import Filing
 from .index import IndexRecord
-
-
-# TODO: Add ability to filter on Filing fields
-# TODO: Add ability to filter on Index fields
-# TODO: Auto-populate Filing fields for the --help output
-# TODO: Auto-populate Index fields for the --help output
 
 
 parser = ArgumentParser(
@@ -56,7 +50,7 @@ for indexFieldName in IndexRecord._fields:
 # Filing filters #
 # -------------- #
 
-for filingField in fields(Filing):
+for filingField in dc.fields(Filing):
     parser.add_argument(
         f"--{filingField.name}",
         type=str,
@@ -77,7 +71,7 @@ class Options(NamedTuple):
 
         # Gather all the filing filters
         filingFilters: Dict[str, str] = {}
-        for filingField in fields(Filing):
+        for filingField in dc.fields(Filing):
             name = filingField.name
             if hasattr(args, name):
                 value = getattr(args, name)
