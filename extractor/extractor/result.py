@@ -4,6 +4,7 @@ from typing import Any, Callable, Dict, Iterable, Iterator, Optional, NamedTuple
 from .downloader import Downloader
 from .filing import Filing
 from .index import Index
+from .querier import Querier
 from .types import FilterCallback
 
 # Result is the thing you interact with to generate
@@ -53,7 +54,8 @@ class Result:
     def __iter__(self) -> Iterator[Filing]:
         for record in self._index:
             xmlFile = self._downloader.fetch(record.object_id)
-            filing = Filing(xmlFile)
+            querier = Querier.from_file(xmlFile)
+            filing = Filing(querier)
             passed = True
             for cb in self._filters:
                 if not cb(filing):
