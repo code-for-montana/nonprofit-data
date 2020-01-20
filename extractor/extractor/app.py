@@ -8,6 +8,9 @@ from .result import Result
 from ._options import Options
 
 
+# TODO: Split output methods into their own module (JSON, human-readable)
+
+
 def run(options: Options):
     index = Index(open("fixtures/index.csv", "r"))
     if len(options.index_filters) > 0:

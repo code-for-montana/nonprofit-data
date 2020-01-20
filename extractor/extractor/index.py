@@ -9,18 +9,35 @@ class IndexRecord(NamedTuple):
     A single index record that can be selected and used to fetch an XML
     filing.
 
-    TODO: Add useful descriptions to each field
+    TODO: Audit the descriptions for correctness and completeness
     """
 
     return_id: str
+    """Unique identifier for the tax filing."""
+
     filing_type: str
+    """Type of filing, for example: "EFILE"."""
+
     ein: str
+    """Tax ID number of the organization."""
+
     tax_period: str
+    """TODO: Find out what this is, exactly"""
+
     sub_date: str
+    """Date the filing was submitted to the IRS."""
+
     taxpayer_name: str
+    """Name of the organization that submitted the filing."""
+
     return_type: str
+    """Type of form that was submitted, for example: "990"."""
+
     dln: str
+    """TODO: Figure out what this is"""
+
     object_id: str
+    """The unqie identifier for this filing, used to download data."""
 
 
 class Index:
@@ -96,6 +113,12 @@ class Index:
 
 
 class FilteredIndex(Index):
+    """
+    An `Index` that can be created from a parent and filter rather than a
+    file and collection of filters. This is what is actually returned from
+    the `filter()` method.
+    """
+
     def __init__(
         self, parent: Index, cb: FilterCallback[IndexRecord],
     ):
