@@ -7,7 +7,7 @@ from typing import TextIO, Optional, Iterable, Callable, Dict, Type
 from .filing import Filing
 
 
-_formatters: Dict[str, Type[Callable[[str], Formatter]]] = {}
+_formatters: Dict[str, Callable[[str], Formatter]] = {}
 """
 A static container for Formatter factories.
 """
@@ -28,12 +28,12 @@ def get_formatter(name: str, destination: str) -> Optional[Formatter]:
     return constructor(destination)
 
 
-def register(name: str, cls: Type[Formatter]) -> None:
+def register(name: str, factory: Callable[[str], Formatter]) -> None:
     """
     Register a new formatter with the given name. This allows it
     to be specified on the command line by its name.
     """
-    _formatters[name] = cls
+    _formatters[name] = factory
 
 
 def registered_formatters() -> Iterable[str]:
@@ -111,7 +111,7 @@ class FileFormatter(Formatter):
 
     _has_written: bool = False
 
-    _path: Optional[str] = None
+    _path: str
 
     def __init__(self, destination: str):
         self._path = destination
@@ -128,6 +128,9 @@ class FileFormatter(Formatter):
             self._file = open(self._path, "w")
 
     def write(self, filing: Filing) -> None:
+        if self._file is None:
+            return
+
         if self._has_written:
             self._file.write("\n")
         else:
@@ -167,7 +170,7 @@ class JSONFormatter(Formatter):
 
     _has_written: bool = False
 
-    _path: Optional[str] = None
+    _path: str
 
     def __init__(self, destination: str):
         self._path = destination
@@ -186,6 +189,9 @@ class JSONFormatter(Formatter):
         self._file.write('{"filings": [')
 
     def write(self, filing: Filing) -> None:
+        if self._file is None:
+            return
+
         if self._has_written:
             self._file.write(",")
         else:
