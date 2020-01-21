@@ -1,7 +1,6 @@
 import json
 from .cache import DirectoryCache, MemoryCache
 from .downloader import AWS_TEMPLATE, HTTPDownloader
-from .filing import Filing
 from .filters import filter_filings, filter_index_record
 from .index import Index, IndexRecord
 from .result import Result
@@ -20,17 +19,7 @@ def run(options: Options):
     if len(options.filing_filters) > 0:
         result = result.filter(filter_filings(options.filing_filters))
 
-    if options.to_json:
-        print(json.dumps(result.to_json()))
-        return
-
-    for filing in result:
-        print("-----------------------------")
-        print(filing.principal_officer_name)
-        print(filing.formation_year)
-        print(filing.website_address)
-        print(filing.us_address)
-        print(filing.us_city_name)
-        print(filing.us_zip_code)
-        print(filing.gross_receipts)
-        print(filing.employee_count)
+    formatter = options.formatter
+    formatter.prologue()
+    formatter.write_all(result)
+    formatter.epilogue()

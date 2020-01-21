@@ -1,9 +1,8 @@
 from __future__ import annotations
-from dataclasses import Field, InitVar, asdict, dataclass, field, fields
+from dataclasses import InitVar, asdict, dataclass, field, fields
 from logging import getLogger
 from typing import Any, Callable, Dict, NamedTuple, Optional, TextIO
 from .querier import Querier
-
 
 _logger = getLogger(__name__)
 
@@ -44,15 +43,18 @@ def str_factory(path: str) -> Dict[str, Callable[[Querier], Optional[str]]]:
     return {"factory": _get_str}
 
 
-def us_address_factory() -> Dict[str, Callable[[Querier], Optional[str]]]:
+def two_part_str_factory(
+    path1: str, path2: str, sep="\n"
+) -> Dict[str, Callable[[Querier], Optional[str]]]:
     """
-    A helper that returns the US address, formatted as a single line.
+    A helper that returns a two-part string field with the parts
+    split by the given separator.
     """
 
     def _factory(querier: Querier) -> Optional[str]:
-        line1 = querier.find_str("/IRS990/USAddress/AddressLine1Txt")
-        line2 = querier.find_str("/IRS990/USAddress/AddressLine2Txt")
-        full = "\n".join([l for l in [line1, line2] if l is not None])
+        line1 = querier.find_str(path1)
+        line2 = querier.find_str(path2)
+        full = sep.join([l for l in [line1, line2] if l is not None])
 
         if full == "":
             return None
@@ -73,10 +75,15 @@ class Filing:
     TODO: Consider making this "frozen", see Python docs for implications
     """
 
-    querier: InitVar[Querier]
-
     activity_or_mission_description: Optional[str] = field(
         metadata=str_factory("/IRS990/ActivityOrMissionDesc")
+    )
+    business_name: Optional[str] = field(
+        metadata=two_part_str_factory(
+            "/ReturnHeader/Filer/BusinessName/BusinessNameLine1Txt",
+            "/ReturnHeader/Filer/BusinessName/BusinessNameLine2Txt",
+            sep=" ",
+        )
     )
     formation_year: Optional[int] = field(
         metadata=int_factory("/IRS990/FormationYr")
@@ -90,7 +97,13 @@ class Filing:
     principal_officer_name: Optional[str] = field(
         metadata=str_factory("/IRS990/PrincipalOfficerNm")
     )
-    us_address: Optional[str] = field(metadata=us_address_factory())
+    tax_year: Optional[int] = field(metadata=int_factory("/ReturnHeader/TaxYr"))
+    us_address: Optional[str] = field(
+        metadata=two_part_str_factory(
+            "/IRS990/USAddress/AddressLine1Txt",
+            "/IRS990/USAddress/AddressLine2Txt",
+        )
+    )
     us_city_name: Optional[str] = field(
         metadata=str_factory("/IRS990/USAddress/CityNm")
     )
