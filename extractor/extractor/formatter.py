@@ -165,6 +165,8 @@ class JSONFormatter(Formatter):
 
     _file: Optional[TextIO] = None
 
+    _has_written: bool = False
+
     _path: Optional[str] = None
 
     def __init__(self, destination: str):
@@ -184,6 +186,11 @@ class JSONFormatter(Formatter):
         self._file.write('{"filings": [')
 
     def write(self, filing: Filing) -> None:
+        if self._has_written:
+            self._file.write(",")
+        else:
+            self._has_written = True
+
         json.dump(filing.to_json(), self._file)
 
     def epilogue(self) -> None:

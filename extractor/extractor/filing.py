@@ -73,6 +73,18 @@ class Filing:
     TODO: Write some doctests, build a Querier just like in its tests
     TODO: Explain how to add a new field
     TODO: Consider making this "frozen", see Python docs for implications
+
+    >>> from extractor import Querier
+    >>> q = Querier.from_path("fixtures/filing.xml")
+    >>> f = Filing(q)
+    >>> f.formation_year
+    2004
+    >>> f.employee_count
+    19
+    >>> f.business_name
+    'VOICE OF SAN DIEGO'
+    >>> type(f.to_json())
+    <class 'dict'>
     """
 
     activity_or_mission_description: Optional[str] = field(
