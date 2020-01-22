@@ -109,13 +109,24 @@ class Querier:
         _logger.debug(f"found str - '{element.text}'")
         return element.text
 
-    def _add_namespace(self, path: str) -> str:
+    @staticmethod
+    def _add_namespace(path: str) -> str:
         """
         Add the default namespace to all path segments
-        that do not already have one.
+        and try to guess if we need to prepend any additional tags.
         """
-        segments = ["efile:ReturnData"] + [
-            f"efile:{tag}" for tag in path.lstrip("/").split("/")
-        ]
-        fullPath = "/".join(segments)
-        return fullPath
+        relative_path = path.lstrip("/")
+
+        explicit_header = relative_path.startswith("ReturnHeader")
+        explicit_data = relative_path.startswith("ReturnData")
+
+        if not (explicit_header or explicit_data):
+            # We assume ReturnData if nothing else was specified
+            # because that's how the IRSx documentation formats
+            # the paths.
+            relative_path = f"ReturnData/{relative_path}"
+
+        segments = [f"efile:{tag}" for tag in relative_path.split("/")]
+
+        full_path = "/".join(segments)
+        return full_path
