@@ -1,16 +1,32 @@
 from __future__ import annotations
+<<<<<<< HEAD
 from argparse import ArgumentParser, Namespace
 import dataclasses as dc
 import json
 from typing import Any, Dict, Mapping, NamedTuple
 from .filing import Filing
 from .index import IndexRecord
+=======
+>>>>>>> command-line-filter
 
+import sys
+from argparse import ArgumentParser, Namespace
+import dataclasses as dc
+import json
+from typing import Any, Dict, Mapping, NamedTuple
+from .filing import Filing
+from .formatter import (
+    Formatter,
+    FileFormatter,
+    registered_formatters,
+    get_formatter,
+)
+from .index import IndexRecord
 
 parser = ArgumentParser(
     prog="extractor",
-    description="A utility to extract and serialize IRS 990 data.",
-    epilog="A project of Code for Montana.",
+    description="A utility to extract and serialize IRS 990 non-profits data.",
+    epilog='A project of "Code for Montana".',
 )
 
 parser.add_argument(
@@ -32,7 +48,22 @@ parser.add_argument(
     "--to-json",
     action="store_true",
     default=False,
-    help="Output extracted data to JSON",
+    help="Output extracted data to JSON, equivalent to --formatter=json",
+)
+
+parser.add_argument(
+    "--formatter",
+    type=str,
+    choices=registered_formatters(),
+    default="file",
+    help="Output formatter, use --destination to specify file name",
+)
+
+parser.add_argument(
+    "--destination",
+    type=str,
+    default=":stdout:",
+    help="File to which output should be written (or ':stdout:', ':stderr:')",
 )
 
 # -------------------- #
@@ -61,6 +92,10 @@ for filingField in dc.fields(Filing):
 class Options(NamedTuple):
     @staticmethod
     def from_args(args: Namespace) -> Options:
+        formatter = get_formatter(args.formatter, args.destination)
+        if formatter is None:
+            formatter = FileFormatter(args.destination)
+
         # Gather all the index filters
         indexFilters: Dict[str, str] = {}
         for indexFieldName in IndexRecord._fields:
@@ -104,10 +139,13 @@ class Options(NamedTuple):
                 json.dump(payload, saveFile)
 
         return Options(
+            formatter=formatter,
             filing_filters=filingFilters,
             index_filters=indexFilters,
             to_json=args.to_json,
         )
+
+    formatter: Formatter
 
     filing_filters: Mapping[str, str] = {}
 

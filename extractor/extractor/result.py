@@ -7,23 +7,6 @@ from .index import Index
 from .querier import Querier
 from .types import FilterCallback
 
-# Result is the thing you interact with to generate
-# Filings, but we'll provide some standalone functions
-# directly on the package (like requests) that can
-# take keyword arguments or use sensible defaults to
-# make it easy to use in a notebook environment or
-# whatever.
-
-# The query will be what we generate code for so that
-# it has all the things someone might want to extract
-# or filter on as semantic fields / properties, plus
-# we can have it support some generic mechanisms like
-# naive xpath or a predicate callback.
-
-# OK, but the Filing also needs code gen so that it
-# has the right fields, plus some kind of string key
-# lookup to augment.
-
 
 class Result:
     """
@@ -65,14 +48,28 @@ class Result:
                 yield filing
 
     def filter(self, cb: FilterCallback[Filing],) -> Result:
+        """
+        Apply a filter to the returned filings. Filings that don't pass the
+        given function will not be yielded by the result.
+        """
         return Result(
             self._downloader, self._index, list(self._filters) + [cb],
         )
 
     def skip(self, n: int) -> Result:
+        """
+        Return a result that is identical to this one but doesn't contain the
+        first `n` results.
+        """
+        # TODO: Implement me
         pass
 
     def take(self, n: int) -> Result:
+        """
+        Return a result that is identical to this one but contains only the
+        first `n` results.
+        """
+        # TODO: Implement me
         pass
 
     def to_json(self) -> Dict[str, Any]:

@@ -12,13 +12,11 @@ class Querier:
     A Querier is a helper for extracting data from a filing XML file. It
     provides helper methods for getting typed data using XPaths.
 
-    FIXME: These tests are busted right now
-
     >>> querier = Querier.from_path("fixtures/filing.xml")
-    >>> filing.formation_year
+    >>> querier.find_str("/IRS990/FormationYr")
     '2004'
-    >>> filing.principal_officer_name
-    'SCOTT LEWIS'
+    >>> querier.find_int("/IRS990/TotalEmployeeCnt")
+    19
     """
 
     _namespaces: Dict[str, str]
@@ -31,7 +29,7 @@ class Querier:
         A factory primarily intended for testing and interactive (REPL or
         Jupyter) use.
         """
-        _logger.debug(f"XML File: '{xml_path}'")
+        _logger.debug(f"create querier for '{xml_path}'")
         with open(xml_path) as xmlFile:
             return Querier.from_file(xmlFile)
 
@@ -44,13 +42,13 @@ class Querier:
 
         # The XML files seem to come back with some kind of unicode identifier
         # sequence at the beginning and Python's XML processing barfs on it. So
-        # here we strip it off to make sure that "<" (opening tag for the
+        # here we strip it off to make sure that "<" (opening bracket for the
         # doctype) is the first character.
         while not content.startswith("<"):
             content = content[1:]
 
         byteContent = content.encode("utf-8")
-        _logger.info(f"XML Content: '{str(byteContent[:40])}'")
+        _logger.info(f"hydrate querier: '{str(byteContent[:40])}'")
 
         tree = ElementTree.fromstring(byteContent)
 
@@ -67,10 +65,10 @@ class Querier:
         Extract a field from the XML document adn convert
         it to a float before returning it.
         """
-        _logger.debug(f"Find (float): '{path}'")
+        _logger.debug(f"find float at '{path}'")
 
         rawValue = self.find_str(path)
-        _logger.debug(f"Find (float): done - '{rawValue}'")
+        _logger.debug(f"found float - '{rawValue}'")
 
         if rawValue is None:
             return None
@@ -82,10 +80,11 @@ class Querier:
         Extract a field from the XML document and
         convert it to an integer before returning it.
         """
-        _logger.debug(f"Find (int): '{path}'")
+
+        _logger.debug(f"find int at '{path}'")
 
         rawValue = self.find_str(path)
-        _logger.debug(f"Find (int): done - '{rawValue}'")
+        _logger.debug(f"found int - '{rawValue}'")
 
         if rawValue is None:
             return None
@@ -97,28 +96,40 @@ class Querier:
         Extract a field from the XML document and return
         it exactly as it was contained in the document.
         """
-        _logger.debug(f"Find (str): '{path}'")
+
+        _logger.debug(f"find str at '{path}'")
 
         fullPath = self._add_namespace(path)
-        _logger.debug(f"Find (str): '{fullPath}'")
+        _logger.debug(f"find str at '{fullPath}'")
 
         element = self._tree.find(fullPath, namespaces=self._namespaces)
 
         if element is None:
-            _logger.debug(f"Find (str): done - '{None}'")
+            _logger.debug(f"found str - '{None}'")
             return None
 
-        _logger.debug(f"Find (str): done - '{element.text}'")
+        _logger.debug(f"found str - '{element.text}'")
         return element.text
 
-    def _add_namespace(self, path: str) -> str:
+    @staticmethod
+    def _add_namespace(path: str) -> str:
         """
         Add the default namespace to all path segments
-        that do not already have one.
+        and try to guess if we need to prepend any additional tags.
         """
-        segments = ["efile:ReturnData"] + [
-            f"efile:{tag}" for tag in path.lstrip("/").split("/")
-        ]
-        fullPath = "/".join(segments)
-        _logger.info(f"XPath: '{fullPath}'")
-        return fullPath
+        relative_path = path.lstrip("/")
+
+        explicit_header = relative_path.startswith("ReturnHeader")
+        explicit_data = relative_path.startswith("ReturnData")
+
+        if not (explicit_header or explicit_data):
+            # We assume ReturnData if nothing else was specified
+            # because that's how the IRSx documentation formats
+            # the paths.
+            relative_path = f"ReturnData/{relative_path}"
+
+        segments = [f"efile:{tag}" for tag in relative_path.split("/")]
+
+        full_path = "/".join(segments)
+        return full_path
+
