@@ -1,5 +1,7 @@
+from __future__ import annotations
 import csv
-from typing import Iterable, List, NamedTuple, TextIO
+from typing import Callable, Iterable, Iterator, List, NamedTuple, TextIO
+from .types import FilterCallback, FilterT
 
 
 class IndexRecord(NamedTuple):
@@ -52,13 +54,19 @@ class Index:
     ['16285381', '16279505', '16279502', '16279501', '16279248']
     """
 
-    _records: List[IndexRecord]
+    _filters: Iterable[FilterCallback[IndexRecord]]
 
-    def __init__(self, index_file: TextIO):
-        self._records = []
+    _records: Iterable[IndexRecord]
 
-        reader = csv.DictReader(index_file)
-        for row in reader:
+    def __init__(
+        self,
+        index_file: TextIO,
+        filters: Iterable[FilterCallback[IndexRecord]] = (),
+    ):
+        self._filters = filters
+
+        records: List[IndexRecord] = []
+        for row in csv.DictReader(index_file):
             record = IndexRecord(
                 return_id=row["RETURN_ID"],
                 filing_type=row["FILING_TYPE"],
@@ -70,7 +78,30 @@ class Index:
                 dln=row["DLN"],
                 object_id=row["OBJECT_ID"],
             )
-            self._records.append(record)
+            records.append(record)
+        self._records = records
 
-    def __iter__(self) -> Iterable[IndexRecord]:
-        return self._records.__iter__()
+    def __iter__(self) -> Iterator[IndexRecord]:
+        for record in self._records:
+            passed = True
+            for cb in self._filters:
+                if not cb(record):
+                    passed = False
+                    break
+            if passed:
+                yield record
+
+    def filter(self, cb: FilterCallback[IndexRecord]) -> Index:
+        return FilteredIndex(self, cb)
+
+
+class FilteredIndex(Index):
+    def __init__(
+        self, parent: Index, cb: FilterCallback[IndexRecord],
+    ):
+        self._filters = list(parent._filters) + [cb]
+
+        # We share the list of records since it could be quite large. This
+        # shouldn't prevent concurrent iteration since we ultimately delegate
+        # to the list's iterator.
+        self._records = parent._records

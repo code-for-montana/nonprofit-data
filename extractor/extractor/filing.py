@@ -47,19 +47,19 @@ class Filing:
         _logger.info(f"XML: '{content[:40]}'")
 
         self._tree = etree.fromstring(content)
-    
+
     @property
     def activity_or_mission_description(self) -> Optional[str]:
         return self.get_str("/IRS990/ActivityOrMissionDesc")
-    
+
     @property
     def formation_year(self) -> Optional[str]:
         return self.get_str("/IRS990/FormationYr")
-    
+
     @property
     def gross_receipts(self) -> Optional[int]:
         return self.get_int("/IRS990/GrossReceiptsAmt")
-    
+
     @property
     def employee_count(self) -> Optional[int]:
         return self.get_int("/IRS990/TotalEmployeeCnt")
@@ -67,7 +67,7 @@ class Filing:
     @property
     def principal_officer_name(self) -> Optional[str]:
         return self.get_str("/IRS990/PrincipalOfficerNm")
-    
+
     @property
     def us_address(self) -> Optional[str]:
         line1 = self.get_str("/IRS990/USAddress/AddressLine1Txt")
@@ -76,15 +76,15 @@ class Filing:
         if full == "":
             return None
         return full
-    
+
     @property
     def us_city_name(self) -> Optional[str]:
         return self.get_str("/IRS990/USAddress/CityNm")
-    
+
     @property
     def us_zip_code(self) -> Optional[str]:
         return self.get_str("/IRS990/USAddress/ZIPCd")
-    
+
     @property
     def website_address(self) -> Optional[str]:
         return self.get_str("/IRS990/WebsiteAddressTxt")

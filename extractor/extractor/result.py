@@ -1,10 +1,10 @@
 from __future__ import annotations
-from typing import Iterable
+from typing import Callable, Iterable, Iterator, Optional, NamedTuple
 
 from .downloader import Downloader
 from .filing import Filing
 from .index import Index
-from .query import Query
+from .types import FilterCallback
 
 # Result is the thing you interact with to generate
 # Filings, but we'll provide some standalone functions
@@ -28,33 +28,47 @@ class Result:
     """
     A lazily-evaluated query result based on the given index and downloader.
 
-    TODO: Make the query actually matter
+    The result can be filtered by providing a callback to the `Result.filter`
+    method. This will return a new, independent `Result` that will apply all
+    filters already applied by the previous `Result`, plus the one that was
+    provided to the method.
     """
 
     _downloader: Downloader
 
+    _filters: Iterable[FilterCallback[Filing]]
+
     _index: Index
 
-    _query: Query
-
     def __init__(
-        self, downloader: Downloader, index: Index, query: Query,
+        self,
+        downloader: Downloader,
+        index: Index,
+        filters: Iterable[FilterCallback[Filing]] = (),
     ):
         self._downloader = downloader
+        self._filters = filters
         self._index = index
-        self._query = query
 
-    def __iter__(self) -> Iterable[Filing]:
+    def __iter__(self) -> Iterator[Filing]:
         for record in self._index:
             xmlFile = self._downloader.fetch(record.object_id)
-            yield Filing(xmlFile)
+            filing = Filing(xmlFile)
+            passed = True
+            for cb in self._filters:
+                if not cb(filing):
+                    passed = False
+                    break
+            if passed:
+                yield filing
+
+    def filter(self, cb: FilterCallback[Filing],) -> Result:
+        return Result(
+            self._downloader, self._index, list(self._filters) + [cb],
+        )
 
     def skip(self, n: int) -> Result:
         pass
 
     def take(self, n: int) -> Result:
         pass
-
-
-def fetch(downloader: Downloader, index: Index, query: Query,) -> Result:
-    return Result(downloader, index, query)
