@@ -19,6 +19,8 @@ pandas = "*"
 lxml = "*"
 cssselect = "*"
 requests = "*"
+defusedxml = "*"
+setuptools = "*"
 
 [requires]
 python_version = "3.8"
