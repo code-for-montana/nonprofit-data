@@ -31,7 +31,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--save-filters", type=str, help="Save the filters applies to a JSON file",
+    "--save-filters", type=str, help="Save the filters applied to a JSON file",
 )
 
 parser.add_argument(
@@ -142,4 +142,3 @@ class Options(NamedTuple):
     index_filters: Mapping[str, str] = {}
 
     to_json: bool = False
-

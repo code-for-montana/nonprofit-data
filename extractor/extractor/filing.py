@@ -25,16 +25,19 @@ def int_factory(path: str) -> Dict[str, Callable[[Querier], Optional[int]]]:
     A helper that returns the correct metadata for a field that receives a
     int value and requires only a simple XPath query.
     """
+
     def _get_int(querier: Querier) -> Optional[int]:
         return querier.find_int(path)
 
     return {"factory": _get_int}
+
 
 def str_factory(path: str) -> Dict[str, Callable[[Querier], Optional[str]]]:
     """
     A helper that returns the correct metadata for a field that receives a
     str value and requires only a simple XPath query.
     """
+
     def _get_str(querier: Querier) -> Optional[str]:
         return querier.find_str(path)
 
@@ -56,6 +59,7 @@ def two_part_str_factory(
         if full == "":
             return None
         return full
+
     return {"factory": _factory}
 
 

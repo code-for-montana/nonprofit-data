@@ -132,4 +132,3 @@ class Querier:
 
         full_path = "/".join(segments)
         return full_path
-

@@ -23,4 +23,3 @@ def run(options: Options):
     formatter.prologue()
     formatter.write_all(result)
     formatter.epilogue()
-

@@ -80,4 +80,3 @@ class Result:
         return {
             "filings": [f.to_json() for f in self],
         }
-
