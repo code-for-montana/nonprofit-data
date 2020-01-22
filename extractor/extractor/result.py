@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Callable, Iterable, Iterator, Optional, NamedTuple
+from typing import Any, Callable, Dict, Iterable, Iterator, Optional, NamedTuple
 
 from .downloader import Downloader
 from .filing import Filing
@@ -72,3 +72,13 @@ class Result:
 
     def take(self, n: int) -> Result:
         pass
+
+    def to_json(self) -> Dict[str, Any]:
+        """
+        Convert the result into JSON suitable for use as data for modules.
+
+        TODO: Think about additional metadata we might want
+        """
+        return {
+            "filings": [f.to_json() for f in self],
+        }

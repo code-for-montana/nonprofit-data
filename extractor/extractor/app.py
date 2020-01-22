@@ -1,7 +1,10 @@
-import io
-from . import HTTPDownloader, Index, DirectoryCache, MemoryCache, Result
+import json
+from .cache import DirectoryCache, MemoryCache
+from .downloader import HTTPDownloader
 from .filing import Filing
-from .index import IndexRecord
+from .index import Index, IndexRecord
+from .result import Result
+from ._options import Options
 
 
 def _filter_taxpayer_name(record: IndexRecord) -> bool:
@@ -14,13 +17,18 @@ def _filter_website(filing: Filing) -> bool:
     return filing.website_address is not None
 
 
-def run():
+def run(options: Options):
     result = Result(
         HTTPDownloader(
             "https://s3.amazonaws.com/irs-form-990", DirectoryCache()
         ),
-        Index(io.open("fixtures/index.csv")).filter(_filter_taxpayer_name),
+        Index(open("fixtures/index.csv", "r")).filter(_filter_taxpayer_name),
     )
+
+    if options.to_json:
+        print(json.dumps(result.to_json()))
+        return
+
     for filing in result.filter(_filter_website):
         print("-----------------------------")
         print(filing.principal_officer_name)
