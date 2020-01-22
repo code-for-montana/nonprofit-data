@@ -1,41 +1,26 @@
 import json
 from .cache import DirectoryCache, MemoryCache
-from .downloader import HTTPDownloader
-from .filing import Filing
+from .downloader import AWS_TEMPLATE, HTTPDownloader
+from .filters import filter_filings, filter_index_record
 from .index import Index, IndexRecord
 from .result import Result
 from ._options import Options
 
 
-def _filter_taxpayer_name(record: IndexRecord) -> bool:
-    # Remove non-profits from MS because it's hard to spell?
-    return "MISSISSIPPI" not in record.taxpayer_name
-
-
-def _filter_website(filing: Filing) -> bool:
-    # Only keep organizations that have a website.
-    return filing.website_address is not None
+# TODO: Split output methods into their own module (JSON, human-readable)
 
 
 def run(options: Options):
-    result = Result(
-        HTTPDownloader(
-            "https://s3.amazonaws.com/irs-form-990", DirectoryCache()
-        ),
-        Index(open("fixtures/index.csv", "r")).filter(_filter_taxpayer_name),
-    )
+    index = Index(open("fixtures/index.csv", "r"))
+    if len(options.index_filters) > 0:
+        index = index.filter(filter_index_record(options.index_filters))
 
-    if options.to_json:
-        print(json.dumps(result.to_json()))
-        return
+    result = Result(HTTPDownloader(AWS_TEMPLATE, DirectoryCache()), index,)
+    if len(options.filing_filters) > 0:
+        result = result.filter(filter_filings(options.filing_filters))
 
-    for filing in result.filter(_filter_website):
-        print("-----------------------------")
-        print(filing.principal_officer_name)
-        print(filing.formation_year)
-        print(filing.website_address)
-        print(filing.us_address)
-        print(filing.us_city_name)
-        print(filing.us_zip_code)
-        print(filing.gross_receipts)
-        print(filing.employee_count)
+    formatter = options.formatter
+    formatter.prologue()
+    formatter.write_all(result)
+    formatter.epilogue()
+
