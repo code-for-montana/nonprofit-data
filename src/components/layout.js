@@ -1,47 +1,44 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+  const sidebar = children[0]
+  const headerTitle = children[1]
+  const headerItems = children[2]
+  const body = children[3]
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0,
-        }}
-      >
-        <main>{children}</main>
-      </div>
-    </>
-  )
-}
+      <div style={{display: `flex`, flexFlow: `row`, height: `100%`}}>
+        <div
+            style={{
+              backgroundColor: `#377eb8`,
+              width: `20%`,
+              padding: `0px 1.0875rem 1.45rem`,
+            }}
+          >
+          {sidebar}
+        </div>
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+      <div style={{display: `flex`, flexGrow: `1`, flexFlow: `column`}}>
+
+        <Header title={headerTitle} items={headerItems}></Header>
+        <div
+          style={{
+            flexGrow: `1`,
+            backgroundColor: `#ffff33`,
+            padding: `0px 1.0875rem 1.45rem`,
+            paddingTop: 0,
+          }}
+        >
+          {body}
+        </div>
+      </div>
+    </div>    
+  </>
+  )
 }
 
 export default Layout

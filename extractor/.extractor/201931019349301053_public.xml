@@ -1,0 +1,624 @@
+ï»¿<?xml version="1.0" encoding="utf-8"?>
+<Return xmlns="http://www.irs.gov/efile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" returnVersion="2017v2.3">
+  <ReturnHeader binaryAttachmentCnt="0">
+    <ReturnTs>2019-04-11T14:03:56-05:00</ReturnTs>
+    <TaxPeriodEndDt>2018-05-31</TaxPeriodEndDt>
+    <PreparerFirmGrp>
+      <PreparerFirmEIN>870516083</PreparerFirmEIN>
+      <PreparerFirmName>
+        <BusinessNameLine1Txt>LARSON &amp; COMPANY PC</BusinessNameLine1Txt>
+      </PreparerFirmName>
+      <PreparerUSAddress>
+        <AddressLine1Txt>11240 S RIVER HEIGHTS DR SUITE 300</AddressLine1Txt>
+        <CityNm>SOUTH JORDAN</CityNm>
+        <StateAbbreviationCd>UT</StateAbbreviationCd>
+        <ZIPCd>840955123</ZIPCd>
+      </PreparerUSAddress>
+    </PreparerFirmGrp>
+    <ReturnTypeCd>990</ReturnTypeCd>
+    <TaxPeriodBeginDt>2017-06-01</TaxPeriodBeginDt>
+    <Filer>
+      <EIN>870213529</EIN>
+      <BusinessName>
+        <BusinessNameLine1Txt>INT'L SOC DAUGHTERS OF UT PIONEERS</BusinessNameLine1Txt>
+      </BusinessName>
+      <BusinessNameControlTxt>INTL</BusinessNameControlTxt>
+      <PhoneNum>8015326479</PhoneNum>
+      <USAddress>
+        <AddressLine1Txt>300 N MAIN ST</AddressLine1Txt>
+        <CityNm>SALT LAKE CITY</CityNm>
+        <StateAbbreviationCd>UT</StateAbbreviationCd>
+        <ZIPCd>84103</ZIPCd>
+      </USAddress>
+    </Filer>
+    <BusinessOfficerGrp>
+      <PersonNm>CHERYL SEARLE</PersonNm>
+      <PersonTitleTxt>PRESIDENT</PersonTitleTxt>
+      <PhoneNum>8015326479</PhoneNum>
+      <SignatureDt>2019-04-04</SignatureDt>
+    </BusinessOfficerGrp>
+    <PreparerPersonGrp>
+      <PreparerPersonNm>RICHARD SCORESBY CPA</PreparerPersonNm>
+      <PTIN>P00573067</PTIN>
+      <PhoneNum>8013131900</PhoneNum>
+      <PreparationDt>2019-04-11</PreparationDt>
+    </PreparerPersonGrp>
+    <FilingSecurityInformation>
+      <IPAddress>
+        <IPv4AddressTxt>216.194.122.228</IPv4AddressTxt>
+      </IPAddress>
+      <IPDt>2019-04-11</IPDt>
+      <IPTm>14:03:56</IPTm>
+      <IPTimezoneCd>CD</IPTimezoneCd>
+      <FilingLicenseTypeCd>P</FilingLicenseTypeCd>
+      <AtSubmissionCreationDeviceId>57A593EC0A89A9BF7F4988439F729164506D5DC6</AtSubmissionCreationDeviceId>
+      <AtSubmissionFilingDeviceId>57A593EC0A89A9BF7F4988439F729164506D5DC6</AtSubmissionFilingDeviceId>
+    </FilingSecurityInformation>
+    <TaxYr>2017</TaxYr>
+    <BuildTS>2019-02-21 02:37:17Z</BuildTS>
+  </ReturnHeader>
+  <ReturnData documentCnt="5">
+    <IRS990 documentId="RetDoc2" referenceDocumentId="RetDoc4">
+      <PrincipalOfficerNm>CHERYL SEARLE</PrincipalOfficerNm>
+      <USAddress>
+        <AddressLine1Txt>300 N MAIN ST</AddressLine1Txt>
+        <CityNm>SALT LAKE CITY</CityNm>
+        <StateAbbreviationCd>UT</StateAbbreviationCd>
+        <ZIPCd>84103</ZIPCd>
+      </USAddress>
+      <GrossReceiptsAmt>510313</GrossReceiptsAmt>
+      <GroupReturnForAffiliatesInd>false</GroupReturnForAffiliatesInd>
+      <Organization501c3Ind>X</Organization501c3Ind>
+      <WebsiteAddressTxt>WWW.DUPINTERNATIONAL.ORG</WebsiteAddressTxt>
+      <TypeOfOrganizationCorpInd>X</TypeOfOrganizationCorpInd>
+      <FormationYr>1925</FormationYr>
+      <LegalDomicileStateCd>UT</LegalDomicileStateCd>
+      <ActivityOrMissionDesc>THE OBJECTIVE OF THIS ORGANIZATION SHALL BE TO PERPETUATE THE NAMES AND ACHIEVEMENTS OF THE MEN, WOMEN AND CHILDREN WHO WERE THE PIONEERS IN FOUNDING THIS COMMONWEALTH: BY PRESERVING OLD LANDMARKS, MARKING HISTORICAL PLACES, COLLECTING ARTIFACTS AND HISTORIES, ESTABLISHING A LIBRARY OF HISTORICAL MATTER AND SECURING MANUSCRIPTS, PHOTOGRAPHS, MAPS AND ALL SUCH DATA AS SHALL AID IN PERFECTING A RECORD OF THE UTAH PIONEERS; BY COMMEMORATING THEIR ENTRANCE INTO THE VALLEY OF THE GREAT SALT LAKE ON JULY 24, 1847, AND SUCH OTHER EVENTS AND DAYS AS ARE IMPORTANT IN THE EARLY HISTORY OF THIS COMMUNITY; BY PUBLISHING HISTORICAL MATERIAL; BY REVIEWING THE LIVES OF THE PIONEERS; THUS TEACHING THEIR DESCENDANTS AND THE CITIZENS OF OUR COUNTRY LESSONS OF FAITH, COURAGE, FORTITUDE, AND PATRIOTISM. THIS ORGANIZATION IS INTERNATIONAL IN ITS SCOPE AND IS ORGANIZED SOLELY FOR HISTORICAL, EDUCATIONAL, AND PUBLIC PURPOSES; IT IS NON-POLITICAL AND NON- SECTARIAN.</ActivityOrMissionDesc>
+      <VotingMembersGoverningBodyCnt>9</VotingMembersGoverningBodyCnt>
+      <VotingMembersIndependentCnt>9</VotingMembersIndependentCnt>
+      <TotalEmployeeCnt>14</TotalEmployeeCnt>
+      <TotalVolunteersCnt>48</TotalVolunteersCnt>
+      <TotalGrossUBIAmt>0</TotalGrossUBIAmt>
+      <PYContributionsGrantsAmt>273246</PYContributionsGrantsAmt>
+      <CYContributionsGrantsAmt>285024</CYContributionsGrantsAmt>
+      <PYProgramServiceRevenueAmt>253041</PYProgramServiceRevenueAmt>
+      <CYProgramServiceRevenueAmt>203795</CYProgramServiceRevenueAmt>
+      <PYInvestmentIncomeAmt>20929</PYInvestmentIncomeAmt>
+      <CYInvestmentIncomeAmt>21494</CYInvestmentIncomeAmt>
+      <CYOtherRevenueAmt>0</CYOtherRevenueAmt>
+      <PYTotalRevenueAmt>547216</PYTotalRevenueAmt>
+      <CYTotalRevenueAmt>510313</CYTotalRevenueAmt>
+      <CYGrantsAndSimilarPaidAmt>0</CYGrantsAndSimilarPaidAmt>
+      <CYBenefitsPaidToMembersAmt>0</CYBenefitsPaidToMembersAmt>
+      <PYSalariesCompEmpBnftPaidAmt>132343</PYSalariesCompEmpBnftPaidAmt>
+      <CYSalariesCompEmpBnftPaidAmt>132719</CYSalariesCompEmpBnftPaidAmt>
+      <CYTotalProfFndrsngExpnsAmt>0</CYTotalProfFndrsngExpnsAmt>
+      <CYTotalFundraisingExpenseAmt>0</CYTotalFundraisingExpenseAmt>
+      <PYOtherExpensesAmt>367979</PYOtherExpensesAmt>
+      <CYOtherExpensesAmt>287536</CYOtherExpensesAmt>
+      <PYTotalExpensesAmt>500322</PYTotalExpensesAmt>
+      <CYTotalExpensesAmt>420255</CYTotalExpensesAmt>
+      <PYRevenuesLessExpensesAmt>46894</PYRevenuesLessExpensesAmt>
+      <CYRevenuesLessExpensesAmt>90058</CYRevenuesLessExpensesAmt>
+      <TotalAssetsBOYAmt>1131705</TotalAssetsBOYAmt>
+      <TotalAssetsEOYAmt>1225625</TotalAssetsEOYAmt>
+      <TotalLiabilitiesBOYAmt>3574</TotalLiabilitiesBOYAmt>
+      <TotalLiabilitiesEOYAmt>3185</TotalLiabilitiesEOYAmt>
+      <NetAssetsOrFundBalancesBOYAmt>1128131</NetAssetsOrFundBalancesBOYAmt>
+      <NetAssetsOrFundBalancesEOYAmt>1222440</NetAssetsOrFundBalancesEOYAmt>
+      <InfoInScheduleOPartIIIInd>X</InfoInScheduleOPartIIIInd>
+      <MissionDesc>THE OBJECTIVE OF THIS ORGANIZATION SHALL BE TO PERPETUATE THE NAMES AND ACHIEVEMENTS OF THE MEN, WOMEN AND CHILDREN WHO WERE THE PIONEERS IN FOUNDING THIS COMMONWEALTH: BY PRESERVING OLD LANDMARKS, MARKING HISTORICAL PLACES, COLLECTING ARTIFACTS AND HISTORIES, ESTABLISHING A LIBRARY OF HISTORICAL MATTER AND SECURING MANUSCRIPTS, PHOTOGRAPHS, MAPS AND ALL SUCH DATA AS SHALL AID IN PERFECTING A RECORD OF THE UTAH PIONEERS; BY COMMEMORATING THEIR ENTRANCE INTO THE VALLEY OF THE GREAT SALT LAKE ON JULY 24, 1847, AND SUCH OTHER EVENTS AND DAYS AS ARE IMPORTANT IN THE EARLY HISTORY OF THIS COMMUNITY; BY PUBLISHING HISTORICAL MATERIAL; BY REVIEWING THE LIVES OF THE PIONEERS; THUS TEACHING THEIR DESCENDANTS AND THE CITIZENS OF OUR COUNTRY LESSONS OF FAITH, COURAGE, FORTITUDE, AND PATRIOTISM. THIS ORGANIZATION IS INTERNATIONAL IN ITS SCOPE AND IS ORGANIZED SOLELY FOR HISTORICAL, EDUCATIONAL, AND PUBLIC PURPOSES; IT IS NON-POLITICAL AND NON- SECTARIAN.</MissionDesc>
+      <SignificantNewProgramSrvcInd>false</SignificantNewProgramSrvcInd>
+      <SignificantChangeInd>false</SignificantChangeInd>
+      <ExpenseAmt>96081</ExpenseAmt>
+      <Desc>MUSEUM - THE MUSEUM IS THE LOCATION FOR STORING AND DISPLAYING ALL OF THE HISTORICAL ARTIFACTS THAT THE ORGANIZATION HAS ACQUIRED OVER THE YEARS. THE MUSEUM IS MADE UP OF TWO BUILDINGS WITH SEVERAL FLOORS IN EACH BUILDING THAT ALL DISPLAY ORIGINAL HISTORICAL ARTIFACTS, ART, AND PHOTOGRAPHS OF THE PIONEERS OF UTAH. THE MUSEUM IS OPEN SIX DAYS A WEEK AND FREE TO ALL VISITORS.</Desc>
+      <ProgSrvcAccomActy2Grp>
+        <ExpenseAmt>75900</ExpenseAmt>
+        <RevenueAmt>133157</RevenueAmt>
+        <Desc>HISTORICAL MEMORABILIA - AT THE ORGANIZATION'S MUSEUM AND DURING ANNUAL CONVENTIONS, THEY SELL HISTORICAL MEMORABILIA TO BOTH MEMBERS AND VISITORS OF THE MUSEUM. HISTORICAL MEMORABILIA INCLUDES BOOKS, AND OTHER ITEMS MEANTTO ENHANCE THE MEMBER OR VISITOR'S UNDERSTANDING AND APPRECIATION FOR THE PIONEERS OF UTAH.</Desc>
+      </ProgSrvcAccomActy2Grp>
+      <ProgSrvcAccomActy3Grp>
+        <ExpenseAmt>51251</ExpenseAmt>
+        <RevenueAmt>28864</RevenueAmt>
+        <Desc>SOUVENIR COUNTER - THE ORGANIZATION PURCHASES (AND OCCASIONALLY RECEIVES AS DONATIONS) SOUVENIR ITEMS THAT ARE COLLECTED AND SOLD AT THEIR MUSEUM AS MEMORABILIA FOR PATRONS WHO VISIT THE MUSEUM. THIS 'PROGRAM' IS CONSIDERED RELATED TO THE ORGANIZATION'S PURPOSES AS IT DOES NOT GENERATE PROFITS AND COULD NOT FUNCTION AS AN INDEPENDENT BUSINESS.</Desc>
+      </ProgSrvcAccomActy3Grp>
+      <ProgSrvcAccomActyOtherGrp>
+        <ExpenseAmt>53686</ExpenseAmt>
+        <RevenueAmt>41774</RevenueAmt>
+        <Desc>PHOTOGRAPHY &amp; HISTORIES - THE ORGANIZATION GATHERS PIONEER PHOTOGRAPHS AND WRITTEN HISTORIES AS A WAY OF PRESERVING THE ACHIEVEMENTS OF MEN, WOMEN, AND CHILDREN WHO WERE PIONEERS. VISITORS AND MEMBER MAY ACQUIRE COPIES OF PHOTOGRAPHS AND HISTORIES THAT THE ORGANIZATION HAS ON FILE. THIS PROGRAM INCLUDES THE SALES OF THESE ITEMS AND THE EXPENSES TAKEN TO CONTINUE GATHERING AND PRESERVING THE PHOTOGRAPHS AND HISTORIES THEY CURRENTLY HAVE OBTAINED. DAYS OF 47 - THIS IS AN ANNUAL PROGRAM THAT COMMEMORATES THE ORIGINAL SETTLERS OF UTAH'S FIRST ENTRY INTO THE SALT LAKE VALLEY. CONVENTIONS &amp; SEMINARS</Desc>
+      </ProgSrvcAccomActyOtherGrp>
+      <TotalOtherProgSrvcExpenseAmt>53686</TotalOtherProgSrvcExpenseAmt>
+      <TotalOtherProgSrvcRevenueAmt>41774</TotalOtherProgSrvcRevenueAmt>
+      <TotalProgramServiceExpensesAmt>276918</TotalProgramServiceExpensesAmt>
+      <DescribedInSection501c3Ind referenceDocumentId="RetDoc5">true</DescribedInSection501c3Ind>
+      <ScheduleBRequiredInd referenceDocumentId="RetDoc1">true</ScheduleBRequiredInd>
+      <PoliticalCampaignActyInd>false</PoliticalCampaignActyInd>
+      <LobbyingActivitiesInd>false</LobbyingActivitiesInd>
+      <SubjectToProxyTaxInd>false</SubjectToProxyTaxInd>
+      <DonorAdvisedFundInd referenceDocumentId="RetDoc3">false</DonorAdvisedFundInd>
+      <ConservationEasementsInd referenceDocumentId="RetDoc3">false</ConservationEasementsInd>
+      <CollectionsOfArtInd referenceDocumentId="RetDoc3">true</CollectionsOfArtInd>
+      <CreditCounselingInd referenceDocumentId="RetDoc3">false</CreditCounselingInd>
+      <TempOrPermanentEndowmentsInd referenceDocumentId="RetDoc3">false</TempOrPermanentEndowmentsInd>
+      <ReportLandBuildingEquipmentInd referenceDocumentId="RetDoc3">false</ReportLandBuildingEquipmentInd>
+      <ReportInvestmentsOtherSecInd referenceDocumentId="RetDoc3">false</ReportInvestmentsOtherSecInd>
+      <ReportProgramRelatedInvstInd referenceDocumentId="RetDoc3">false</ReportProgramRelatedInvstInd>
+      <ReportOtherAssetsInd referenceDocumentId="RetDoc3">false</ReportOtherAssetsInd>
+      <ReportOtherLiabilitiesInd referenceDocumentId="RetDoc3">false</ReportOtherLiabilitiesInd>
+      <IncludeFIN48FootnoteInd referenceDocumentId="RetDoc3">false</IncludeFIN48FootnoteInd>
+      <IndependentAuditFinclStmtInd referenceDocumentId="RetDoc3">false</IndependentAuditFinclStmtInd>
+      <ConsolidatedAuditFinclStmtInd referenceDocumentId="RetDoc3">false</ConsolidatedAuditFinclStmtInd>
+      <SchoolOperatingInd>false</SchoolOperatingInd>
+      <ForeignOfficeInd>false</ForeignOfficeInd>
+      <ForeignActivitiesInd>false</ForeignActivitiesInd>
+      <MoreThan5000KToOrgInd>false</MoreThan5000KToOrgInd>
+      <MoreThan5000KToIndividualsInd>false</MoreThan5000KToIndividualsInd>
+      <ProfessionalFundraisingInd>false</ProfessionalFundraisingInd>
+      <FundraisingActivitiesInd>false</FundraisingActivitiesInd>
+      <GamingActivitiesInd>false</GamingActivitiesInd>
+      <OperateHospitalInd>false</OperateHospitalInd>
+      <GrantsToOrganizationsInd>false</GrantsToOrganizationsInd>
+      <GrantsToIndividualsInd>false</GrantsToIndividualsInd>
+      <ScheduleJRequiredInd>false</ScheduleJRequiredInd>
+      <TaxExemptBondsInd>false</TaxExemptBondsInd>
+      <EngagedInExcessBenefitTransInd>false</EngagedInExcessBenefitTransInd>
+      <PYExcessBenefitTransInd>false</PYExcessBenefitTransInd>
+      <LoanOutstandingInd>false</LoanOutstandingInd>
+      <GrantToRelatedPersonInd>false</GrantToRelatedPersonInd>
+      <BusinessRlnWithOrgMemInd>false</BusinessRlnWithOrgMemInd>
+      <BusinessRlnWithFamMemInd>false</BusinessRlnWithFamMemInd>
+      <BusinessRlnWithOfficerEntInd>false</BusinessRlnWithOfficerEntInd>
+      <DeductibleNonCashContriInd>false</DeductibleNonCashContriInd>
+      <DeductibleArtContributionInd>false</DeductibleArtContributionInd>
+      <TerminateOperationsInd>false</TerminateOperationsInd>
+      <PartialLiquidationInd>false</PartialLiquidationInd>
+      <DisregardedEntityInd>false</DisregardedEntityInd>
+      <RelatedEntityInd>false</RelatedEntityInd>
+      <RelatedOrganizationCtrlEntInd>false</RelatedOrganizationCtrlEntInd>
+      <TrnsfrExmptNonChrtblRltdOrgInd>false</TrnsfrExmptNonChrtblRltdOrgInd>
+      <ActivitiesConductedPrtshpInd>false</ActivitiesConductedPrtshpInd>
+      <ScheduleORequiredInd>true</ScheduleORequiredInd>
+      <IRPDocumentCnt>3</IRPDocumentCnt>
+      <IRPDocumentW2GCnt>0</IRPDocumentW2GCnt>
+      <EmployeeCnt>14</EmployeeCnt>
+      <EmploymentTaxReturnsFiledInd>true</EmploymentTaxReturnsFiledInd>
+      <UnrelatedBusIncmOverLimitInd>false</UnrelatedBusIncmOverLimitInd>
+      <ForeignFinancialAccountInd>false</ForeignFinancialAccountInd>
+      <ProhibitedTaxShelterTransInd>false</ProhibitedTaxShelterTransInd>
+      <TaxablePartyNotificationInd>false</TaxablePartyNotificationInd>
+      <NondeductibleContributionsInd>false</NondeductibleContributionsInd>
+      <QuidProQuoContributionsInd>false</QuidProQuoContributionsInd>
+      <Form8282PropertyDisposedOfInd>false</Form8282PropertyDisposedOfInd>
+      <RcvFndsToPayPrsnlBnftCntrctInd>false</RcvFndsToPayPrsnlBnftCntrctInd>
+      <PayPremiumsPrsnlBnftCntrctInd>false</PayPremiumsPrsnlBnftCntrctInd>
+      <IndoorTanningServicesInd>false</IndoorTanningServicesInd>
+      <InfoInScheduleOPartVIInd>X</InfoInScheduleOPartVIInd>
+      <GoverningBodyVotingMembersCnt>9</GoverningBodyVotingMembersCnt>
+      <IndependentVotingMemberCnt>9</IndependentVotingMemberCnt>
+      <FamilyOrBusinessRlnInd>false</FamilyOrBusinessRlnInd>
+      <DelegationOfMgmtDutiesInd>false</DelegationOfMgmtDutiesInd>
+      <ChangeToOrgDocumentsInd>false</ChangeToOrgDocumentsInd>
+      <MaterialDiversionOrMisuseInd>false</MaterialDiversionOrMisuseInd>
+      <MembersOrStockholdersInd>true</MembersOrStockholdersInd>
+      <ElectionOfBoardMembersInd>true</ElectionOfBoardMembersInd>
+      <DecisionsSubjectToApprovaInd>false</DecisionsSubjectToApprovaInd>
+      <MinutesOfGoverningBodyInd>true</MinutesOfGoverningBodyInd>
+      <MinutesOfCommitteesInd>true</MinutesOfCommitteesInd>
+      <OfficerMailingAddressInd>false</OfficerMailingAddressInd>
+      <LocalChaptersInd>true</LocalChaptersInd>
+      <PoliciesReferenceChaptersInd>true</PoliciesReferenceChaptersInd>
+      <Form990ProvidedToGvrnBodyInd>true</Form990ProvidedToGvrnBodyInd>
+      <ConflictOfInterestPolicyInd>false</ConflictOfInterestPolicyInd>
+      <WhistleblowerPolicyInd>false</WhistleblowerPolicyInd>
+      <DocumentRetentionPolicyInd>false</DocumentRetentionPolicyInd>
+      <CompensationProcessCEOInd>false</CompensationProcessCEOInd>
+      <CompensationProcessOtherInd>false</CompensationProcessOtherInd>
+      <InvestmentInJointVentureInd>false</InvestmentInJointVentureInd>
+      <StatesWhereCopyOfReturnIsFldCd>UT</StatesWhereCopyOfReturnIsFldCd>
+      <UponRequestInd>X</UponRequestInd>
+      <BooksInCareOfDetail>
+        <PersonNm>INT'L SOC DAUGHTERS OF UT PIO</PersonNm>
+        <PhoneNum>8015326479</PhoneNum>
+        <USAddress>
+          <AddressLine1Txt>300 N MAIN ST</AddressLine1Txt>
+          <CityNm>SALT LAKE CITY</CityNm>
+          <StateAbbreviationCd>UT</StateAbbreviationCd>
+          <ZIPCd>84103</ZIPCd>
+        </USAddress>
+      </BooksInCareOfDetail>
+      <NoListedPersonsCompensatedInd>X</NoListedPersonsCompensatedInd>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>CHERYL SEARLE</PersonNm>
+        <TitleTxt>PRESIDENT</TitleTxt>
+        <AverageHoursPerWeekRt>60.00</AverageHoursPerWeekRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>ELLEN JEPPSON</PersonNm>
+        <TitleTxt>1ST VICE PRE</TitleTxt>
+        <AverageHoursPerWeekRt>20.00</AverageHoursPerWeekRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>KATHERINE T BRIMHALL</PersonNm>
+        <TitleTxt>2ND VICE PRE</TitleTxt>
+        <AverageHoursPerWeekRt>12.00</AverageHoursPerWeekRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>MARYANN JENSEN</PersonNm>
+        <TitleTxt>3RD VICE PRE</TitleTxt>
+        <AverageHoursPerWeekRt>20.00</AverageHoursPerWeekRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>JEANIE BOWERBANK</PersonNm>
+        <TitleTxt>4TH VICE PRE</TitleTxt>
+        <AverageHoursPerWeekRt>12.00</AverageHoursPerWeekRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>CONSTANCE HUNTSMAN</PersonNm>
+        <TitleTxt>5TH VICE PRE</TitleTxt>
+        <AverageHoursPerWeekRt>12.00</AverageHoursPerWeekRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>BILLIE ALLRED</PersonNm>
+        <TitleTxt>TREASURER</TitleTxt>
+        <AverageHoursPerWeekRt>24.00</AverageHoursPerWeekRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>VICKI CHAMBERS</PersonNm>
+        <TitleTxt>RECORDING SE</TitleTxt>
+        <AverageHoursPerWeekRt>12.00</AverageHoursPerWeekRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>RUBY FIELDING</PersonNm>
+        <TitleTxt>CORRESPOND S</TitleTxt>
+        <AverageHoursPerWeekRt>8.00</AverageHoursPerWeekRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>CAROL BILLINGS</PersonNm>
+        <TitleTxt>REGISTRAR</TitleTxt>
+        <AverageHoursPerWeekRt>20.00</AverageHoursPerWeekRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <FormerOfcrEmployeesListedInd>false</FormerOfcrEmployeesListedInd>
+      <TotalCompGreaterThan150KInd>false</TotalCompGreaterThan150KInd>
+      <CompensationFromOtherSrcsInd>false</CompensationFromOtherSrcsInd>
+      <MembershipDuesAmt>245286</MembershipDuesAmt>
+      <AllOtherContributionsAmt>39738</AllOtherContributionsAmt>
+      <TotalContributionsAmt>285024</TotalContributionsAmt>
+      <ProgramServiceRevenueGrp>
+        <Desc>HISTORICAL MEMORABILIA</Desc>
+        <BusinessCd>900099</BusinessCd>
+        <TotalRevenueColumnAmt>133157</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>133157</RelatedOrExemptFuncIncomeAmt>
+      </ProgramServiceRevenueGrp>
+      <ProgramServiceRevenueGrp>
+        <Desc>SOUVENIR COUNTER</Desc>
+        <BusinessCd>453220</BusinessCd>
+        <TotalRevenueColumnAmt>28864</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>28864</RelatedOrExemptFuncIncomeAmt>
+      </ProgramServiceRevenueGrp>
+      <ProgramServiceRevenueGrp>
+        <Desc>CONVENTIONS &amp; SEMINARS</Desc>
+        <BusinessCd>900099</BusinessCd>
+        <TotalRevenueColumnAmt>23398</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>23398</RelatedOrExemptFuncIncomeAmt>
+      </ProgramServiceRevenueGrp>
+      <ProgramServiceRevenueGrp>
+        <Desc>PHOTOGRAPHY &amp; HISTORIES</Desc>
+        <BusinessCd>900099</BusinessCd>
+        <TotalRevenueColumnAmt>13121</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>13121</RelatedOrExemptFuncIncomeAmt>
+      </ProgramServiceRevenueGrp>
+      <ProgramServiceRevenueGrp>
+        <Desc>OTHER PROGRAM SERVICES</Desc>
+        <TotalRevenueColumnAmt>5255</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>5255</RelatedOrExemptFuncIncomeAmt>
+      </ProgramServiceRevenueGrp>
+      <TotalProgramServiceRevenueAmt>203795</TotalProgramServiceRevenueAmt>
+      <InvestmentIncomeGrp>
+        <TotalRevenueColumnAmt>21494</TotalRevenueColumnAmt>
+        <ExclusionAmt>21494</ExclusionAmt>
+      </InvestmentIncomeGrp>
+      <TotalRevenueGrp>
+        <TotalRevenueColumnAmt>510313</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>203795</RelatedOrExemptFuncIncomeAmt>
+        <ExclusionAmt>21494</ExclusionAmt>
+      </TotalRevenueGrp>
+      <OtherSalariesAndWagesGrp>
+        <TotalAmt>123325</TotalAmt>
+        <ProgramServicesAmt>108054</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>15271</ManagementAndGeneralAmt>
+      </OtherSalariesAndWagesGrp>
+      <PayrollTaxesGrp>
+        <TotalAmt>9394</TotalAmt>
+        <ProgramServicesAmt>8358</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>1036</ManagementAndGeneralAmt>
+      </PayrollTaxesGrp>
+      <FeesForServicesAccountingGrp>
+        <TotalAmt>20405</TotalAmt>
+        <ProgramServicesAmt>8246</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>12159</ManagementAndGeneralAmt>
+      </FeesForServicesAccountingGrp>
+      <FeesForSrvcInvstMgmntFeesGrp>
+        <TotalAmt>6653</TotalAmt>
+        <ManagementAndGeneralAmt>6653</ManagementAndGeneralAmt>
+      </FeesForSrvcInvstMgmntFeesGrp>
+      <OfficeExpensesGrp>
+        <TotalAmt>132879</TotalAmt>
+        <ProgramServicesAmt>54966</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>77913</ManagementAndGeneralAmt>
+      </OfficeExpensesGrp>
+      <InformationTechnologyGrp>
+        <TotalAmt>12567</TotalAmt>
+        <ProgramServicesAmt>5079</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>7488</ManagementAndGeneralAmt>
+      </InformationTechnologyGrp>
+      <TravelGrp>
+        <TotalAmt>14506</TotalAmt>
+        <ProgramServicesAmt>5862</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>8644</ManagementAndGeneralAmt>
+      </TravelGrp>
+      <ConferencesMeetingsGrp>
+        <TotalAmt>37354</TotalAmt>
+        <ProgramServicesAmt>37354</ProgramServicesAmt>
+      </ConferencesMeetingsGrp>
+      <OtherExpensesGrp>
+        <Desc>MERCHANDISE PURCHASED</Desc>
+        <TotalAmt>30770</TotalAmt>
+        <ProgramServicesAmt>27657</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>3113</ManagementAndGeneralAmt>
+      </OtherExpensesGrp>
+      <OtherExpensesGrp>
+        <Desc>MEALS &amp; ENTERTAINMENT</Desc>
+        <TotalAmt>8308</TotalAmt>
+        <ProgramServicesAmt>3357</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>4951</ManagementAndGeneralAmt>
+      </OtherExpensesGrp>
+      <OtherExpensesGrp>
+        <Desc>PINS</Desc>
+        <TotalAmt>5938</TotalAmt>
+        <ProgramServicesAmt>5938</ProgramServicesAmt>
+      </OtherExpensesGrp>
+      <OtherExpensesGrp>
+        <Desc>REPAIRS AND MAINTENANCE</Desc>
+        <TotalAmt>5851</TotalAmt>
+        <ProgramServicesAmt>5851</ProgramServicesAmt>
+      </OtherExpensesGrp>
+      <AllOtherExpensesGrp>
+        <TotalAmt>12305</TotalAmt>
+        <ProgramServicesAmt>6196</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>6109</ManagementAndGeneralAmt>
+      </AllOtherExpensesGrp>
+      <TotalFunctionalExpensesGrp>
+        <TotalAmt>420255</TotalAmt>
+        <ProgramServicesAmt>276918</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>143337</ManagementAndGeneralAmt>
+        <FundraisingAmt>0</FundraisingAmt>
+      </TotalFunctionalExpensesGrp>
+      <CashNonInterestBearingGrp>
+        <BOYAmt>5000</BOYAmt>
+        <EOYAmt>5000</EOYAmt>
+      </CashNonInterestBearingGrp>
+      <SavingsAndTempCashInvstGrp>
+        <BOYAmt>297909</BOYAmt>
+        <EOYAmt>370806</EOYAmt>
+      </SavingsAndTempCashInvstGrp>
+      <OthNotesLoansReceivableNetGrp>
+        <BOYAmt>783</BOYAmt>
+        <EOYAmt>548</EOYAmt>
+      </OthNotesLoansReceivableNetGrp>
+      <InventoriesForSaleOrUseGrp>
+        <BOYAmt>10750</BOYAmt>
+        <EOYAmt>10750</EOYAmt>
+      </InventoriesForSaleOrUseGrp>
+      <InvestmentsPubTradedSecGrp>
+        <BOYAmt>817263</BOYAmt>
+        <EOYAmt>838521</EOYAmt>
+      </InvestmentsPubTradedSecGrp>
+      <TotalAssetsGrp>
+        <BOYAmt>1131705</BOYAmt>
+        <EOYAmt>1225625</EOYAmt>
+      </TotalAssetsGrp>
+      <AccountsPayableAccrExpnssGrp>
+        <BOYAmt>3574</BOYAmt>
+        <EOYAmt>3185</EOYAmt>
+      </AccountsPayableAccrExpnssGrp>
+      <TotalLiabilitiesGrp>
+        <BOYAmt>3574</BOYAmt>
+        <EOYAmt>3185</EOYAmt>
+      </TotalLiabilitiesGrp>
+      <OrganizationFollowsSFAS117Ind>X</OrganizationFollowsSFAS117Ind>
+      <UnrestrictedNetAssetsGrp>
+        <BOYAmt>1128131</BOYAmt>
+        <EOYAmt>1222440</EOYAmt>
+      </UnrestrictedNetAssetsGrp>
+      <TotalNetAssetsFundBalanceGrp>
+        <BOYAmt>1128131</BOYAmt>
+        <EOYAmt>1222440</EOYAmt>
+      </TotalNetAssetsFundBalanceGrp>
+      <TotLiabNetAssetsFundBalanceGrp>
+        <BOYAmt>1131705</BOYAmt>
+        <EOYAmt>1225625</EOYAmt>
+      </TotLiabNetAssetsFundBalanceGrp>
+      <ReconcilationRevenueExpnssAmt>90058</ReconcilationRevenueExpnssAmt>
+      <NetUnrlzdGainsLossesInvstAmt>4251</NetUnrlzdGainsLossesInvstAmt>
+      <MethodOfAccountingAccrualInd>X</MethodOfAccountingAccrualInd>
+      <AccountantCompileOrReviewInd>true</AccountantCompileOrReviewInd>
+      <AcctCompileOrReviewBasisGrp>
+        <SeparateBasisFinclStmtInd>X</SeparateBasisFinclStmtInd>
+      </AcctCompileOrReviewBasisGrp>
+      <FSAuditedInd>false</FSAuditedInd>
+      <AuditCommitteeInd>true</AuditCommitteeInd>
+      <FederalGrantAuditRequiredInd>false</FederalGrantAuditRequiredInd>
+    </IRS990>
+    <IRS990ScheduleA documentId="RetDoc5">
+      <PubliclySupportedOrg509a2Ind>X</PubliclySupportedOrg509a2Ind>
+      <GiftsGrantsContrisRcvd509Grp>
+        <CurrentTaxYearMinus4YearsAmt>194636</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>196967</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>190759</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>273246</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>285024</CurrentTaxYearAmt>
+        <TotalAmt>1140632</TotalAmt>
+      </GiftsGrantsContrisRcvd509Grp>
+      <GrossReceiptsAdmissionsGrp>
+        <CurrentTaxYearMinus4YearsAmt>318845</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>289467</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>271162</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>253041</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>203795</CurrentTaxYearAmt>
+        <TotalAmt>1336310</TotalAmt>
+      </GrossReceiptsAdmissionsGrp>
+      <GovtFurnSrvcFcltsVl509Grp>
+        <CurrentTaxYearMinus4YearsAmt>465923</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>465923</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>465923</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>465923</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>465923</CurrentTaxYearAmt>
+        <TotalAmt>2329615</TotalAmt>
+      </GovtFurnSrvcFcltsVl509Grp>
+      <Total509Grp>
+        <CurrentTaxYearMinus4YearsAmt>979404</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>952357</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>927844</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>992210</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>954742</CurrentTaxYearAmt>
+        <TotalAmt>4806557</TotalAmt>
+      </Total509Grp>
+      <PublicSupportTotal509Amt>4806557</PublicSupportTotal509Amt>
+      <GrossInvestmentIncome509Grp>
+        <CurrentTaxYearMinus4YearsAmt>11797</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>23049</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>19127</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>20929</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>21494</CurrentTaxYearAmt>
+        <TotalAmt>96396</TotalAmt>
+      </GrossInvestmentIncome509Grp>
+      <InvestmentIncomeAndUBTIGrp>
+        <CurrentTaxYearMinus4YearsAmt>11797</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>23049</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>19127</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>20929</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>21494</CurrentTaxYearAmt>
+        <TotalAmt>96396</TotalAmt>
+      </InvestmentIncomeAndUBTIGrp>
+      <OtherIncome509Grp>
+        <CurrentTaxYearMinus4YearsAmt>12482</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>-6432</CurrentTaxYearMinus3YearsAmt>
+        <TotalAmt>6050</TotalAmt>
+      </OtherIncome509Grp>
+      <TotalSupportCalendarYearGrp>
+        <CurrentTaxYearMinus4YearsAmt>1003683</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>968974</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>946971</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>1013139</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>976236</CurrentTaxYearAmt>
+        <TotalAmt>4909003</TotalAmt>
+      </TotalSupportCalendarYearGrp>
+      <PublicSupportCY509Pct>0.97910</PublicSupportCY509Pct>
+      <PublicSupportPY509Pct>0.97840</PublicSupportPY509Pct>
+      <InvestmentIncomeCYPct>0.02000</InvestmentIncomeCYPct>
+      <InvestmentIncomePYPct>0.02000</InvestmentIncomePYPct>
+      <ThirtyThrPctSuprtTestsCY509Ind>X</ThirtyThrPctSuprtTestsCY509Ind>
+      <Form990ScheduleAPartVIGrp>
+        <FormAndLineReferenceDesc>PART III, LINE 12</FormAndLineReferenceDesc>
+        <ExplanationTxt>6,050</ExplanationTxt>
+      </Form990ScheduleAPartVIGrp>
+    </IRS990ScheduleA>
+    <IRS990ScheduleB documentId="RetDoc1" />
+    <IRS990ScheduleD documentId="RetDoc3">
+      <CollectionUsedPubExhibitionInd>X</CollectionUsedPubExhibitionInd>
+      <CollectionUsedPreservationInd>X</CollectionUsedPreservationInd>
+      <SolicitedAssetsSaleInd>false</SolicitedAssetsSaleInd>
+      <TotalRevEtcAuditedFinclStmtAmt>989795</TotalRevEtcAuditedFinclStmtAmt>
+      <NetUnrealizedGainsInvstAmt>4251</NetUnrealizedGainsInvstAmt>
+      <DonatedServicesAndUseFcltsAmt>475231</DonatedServicesAndUseFcltsAmt>
+      <RevenueNotReportedAmt>479482</RevenueNotReportedAmt>
+      <RevenueSubtotalAmt>510313</RevenueSubtotalAmt>
+      <TotalRevenuePerForm990Amt>510313</TotalRevenuePerForm990Amt>
+      <TotExpnsEtcAuditedFinclStmtAmt>895486</TotExpnsEtcAuditedFinclStmtAmt>
+      <DonatedServicesUseFcltsAmt>475231</DonatedServicesUseFcltsAmt>
+      <ExpensesNotReportedAmt>475231</ExpensesNotReportedAmt>
+      <ExpensesSubtotalAmt>420255</ExpensesSubtotalAmt>
+      <TotalExpensesPerForm990Amt>420255</TotalExpensesPerForm990Amt>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>SCHEDULE D, PAGE 2, PART III, LINE 4</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE MISSION OF THE MUSEUMS IS TO COLLECT, PRESERVE AND DISPLAY ARTIFACTS BELONGING TO UTAH PIONEERS WHO SETTLED THE TERRITORY OF DESERET FROM 1847 TO MAY 10, 1869, AND THOSE ARTIFACTS WHICH REPRESENT THE LOCAL COMMUNITY. WITH AN OPEN STORAGE POLICY AND DONOR-BASED EVALUATION OF ARTIFACTS, COLLECTIONS ARE ESTABLISHED WHICH REPRESENT THE ENTIRE PIONEER COMMUNITY, AND WHICH SERVE AS EASILY ACCESSIBLE EDUCATIONAL RESEARCH FACILITIES FOR BOTH DESCENDANTS AND THE GREATER COMMUNITY. THE OBJECTIVE OF THE ORGANIZATION IS TO PERPETUATE THE NAMES AND ACHIEVEMENTS OF THOSE PIONEERS WHO FOUNDED THIS COMMONWEALTH. COLLECTING, PRESERVING AND DISPLAYING COLLECTIONS OF MANUSCRIPTS, HISTORIES, PHOTOGRAPHS, MAPS AND ARTIFACTS, THE ORGANIZATION IS FURTHERING THIS PURPOSE.</ExplanationTxt>
+      </SupplementalInformationDetail>
+    </IRS990ScheduleD>
+    <IRS990ScheduleO documentId="RetDoc4">
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990 - ORGANIZATION'S MISSION</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE OBJECTIVE OF THIS ORGANIZATION SHALL BE TO PERPETUATE THE NAMES AND ACHIEVEMENTS OF THE MEN, WOMEN AND CHILDREN WHO WERE THE PIONEERS IN FOUNDING THIS COMMONWEALTH: BY PRESERVING OLD LANDMARKS, MARKING HISTORICAL PLACES, COLLECTING ARTIFACTS AND HISTORIES, ESTABLISHING A LIBRARY OF HISTORICAL MATTER AND SECURING MANUSCRIPTS, PHOTOGRAPHS, MAPS AND ALL SUCH DATA AS SHALL AID IN PERFECTING A RECORD OF THE UTAH PIONEERS; BY COMMEMORATING THEIR ENTRANCE INTO THE VALLEY OF THE GREAT SALT LAKE ON JULY 24, 1847, AND SUCH OTHER EVENTS AND DAYS AS ARE IMPORTANT IN THE EARLY HISTORY OF THIS COMMUNITY; BY PUBLISHING HISTORICAL MATERIAL; BY REVIEWING THE LIVES OF THE PIONEERS; THUS TEACHING THEIR DESCENDANTS AND THE CITIZENS OF OUR COUNTRY LESSONS OF FAITH, COURAGE, FORTITUDE, AND PATRIOTISM. THIS ORGANIZATION IS INTERNATIONAL IN ITS SCOPE AND IS ORGANIZED SOLELY FOR HISTORICAL, EDUCATIONAL, AND PUBLIC PURPOSES; IT IS NON-POLITICAL AND NON- SECTARIAN.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PAGE 2, PART III, LINE 4D</FormAndLineReferenceDesc>
+        <ExplanationTxt>PHOTOGRAPHY &amp; HISTORIES - THE ORGANIZATION GATHERS PIONEER PHOTOGRAPHS AND WRITTEN HISTORIES AS A WAY OF PRESERVING THE ACHIEVEMENTS OF MEN, WOMEN, AND CHILDREN WHO WERE PIONEERS. VISITORS AND MEMBER MAY ACQUIRE COPIES OF PHOTOGRAPHS AND HISTORIES THAT THE ORGANIZATION HAS ON FILE. THIS PROGRAM INCLUDES THE SALES OF THESE ITEMS AND THE EXPENSES TAKEN TO CONTINUE GATHERING AND PRESERVING THE PHOTOGRAPHS AND HISTORIES THEY CURRENTLY HAVE OBTAINED. DAYS OF 47 - THIS IS AN ANNUAL PROGRAM THAT COMMEMORATES THE ORIGINAL SETTLERS OF UTAH'S FIRST ENTRY INTO THE SALT LAKE VALLEY. CONVENTIONS &amp; SEMINARS</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PAGE 6, PART VI, LINE 6</FormAndLineReferenceDesc>
+        <ExplanationTxt>MEMBERS HAVE THE RIGHT TO ELECT MEMBERS OF THE GOVERNING BODY THROUGH THEIR APPOINTED COMPANY DELEGATES.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PAGE 6, PART VI, LINE 7A</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE GOVERNING BODY IS ELECTED BY MEMBERS BIENNIALLY THROUGH COMPANY APPOINTED DELEGATES.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PAGE 6, PART VI, LINE 11B</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE TAX RETURN IS REVIEWED BY EXECUTIVE BOARD MEMBERS BEFORE FINALIZATION OF RETURN.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PAGE 6, PART VI, LINE 19</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE ORGANIZATION'S CONSTITUTION AND BYLAWS ARE MADE AVAILABLE TO THE PUBLIC THROUGH THE WEBSITE ISDUP.ORG.</ExplanationTxt>
+      </SupplementalInformationDetail>
+    </IRS990ScheduleO>
+  </ReturnData>
+</Return>

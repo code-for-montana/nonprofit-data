@@ -1,0 +1,472 @@
+ï»¿<?xml version="1.0" encoding="utf-8"?>
+<Return xmlns="http://www.irs.gov/efile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" returnVersion="2017v2.3">
+  <ReturnHeader binaryAttachmentCnt="0">
+    <ReturnTs>2019-04-01T15:58:04-05:00</ReturnTs>
+    <TaxPeriodEndDt>2018-09-30</TaxPeriodEndDt>
+    <PreparerFirmGrp>
+      <PreparerFirmEIN>202806136</PreparerFirmEIN>
+      <PreparerFirmName>
+        <BusinessNameLine1Txt>BRUCE FOX PC</BusinessNameLine1Txt>
+      </PreparerFirmName>
+      <PreparerUSAddress>
+        <AddressLine1Txt>97 WEST ELM ST</AddressLine1Txt>
+        <CityNm>HOPKINTON</CityNm>
+        <StateAbbreviationCd>MA</StateAbbreviationCd>
+        <ZIPCd>01748</ZIPCd>
+      </PreparerUSAddress>
+    </PreparerFirmGrp>
+    <ReturnTypeCd>990</ReturnTypeCd>
+    <TaxPeriodBeginDt>2017-10-01</TaxPeriodBeginDt>
+    <Filer>
+      <EIN>133085892</EIN>
+      <BusinessName>
+        <BusinessNameLine1Txt>THE LOGOS ENCOUNTER INC</BusinessNameLine1Txt>
+      </BusinessName>
+      <BusinessNameControlTxt>LOGO</BusinessNameControlTxt>
+      <PhoneNum>9783761886</PhoneNum>
+      <USAddress>
+        <AddressLine1Txt>55 CARTER STREET</AddressLine1Txt>
+        <CityNm>BERLIN</CityNm>
+        <StateAbbreviationCd>MA</StateAbbreviationCd>
+        <ZIPCd>01503</ZIPCd>
+      </USAddress>
+    </Filer>
+    <BusinessOfficerGrp>
+      <PersonNm>MAUREEN CARVILLE</PersonNm>
+      <PersonTitleTxt>PRESIDENT</PersonTitleTxt>
+      <SignatureDt>2018-03-19</SignatureDt>
+      <DiscussWithPaidPreparerInd>true</DiscussWithPaidPreparerInd>
+    </BusinessOfficerGrp>
+    <PreparerPersonGrp>
+      <PreparerPersonNm>BRUCE FOX CPA</PreparerPersonNm>
+      <PTIN>P00004421</PTIN>
+      <PhoneNum>7819971584</PhoneNum>
+      <PreparationDt>2019-03-18</PreparationDt>
+    </PreparerPersonGrp>
+    <FilingSecurityInformation>
+      <IPAddress>
+        <IPv4AddressTxt>167.68.16.49</IPv4AddressTxt>
+      </IPAddress>
+      <IPDt>2019-04-01</IPDt>
+      <IPTm>15:58:04</IPTm>
+      <IPTimezoneCd>CD</IPTimezoneCd>
+      <FilingLicenseTypeCd>P</FilingLicenseTypeCd>
+      <AtSubmissionCreationDeviceId>992E83F8B90DF5B4529726673504EEC70C9F5DD3</AtSubmissionCreationDeviceId>
+      <AtSubmissionFilingDeviceId>5D0280A0F7BC3FECD0BDDAC7B68987F93B77BE44</AtSubmissionFilingDeviceId>
+    </FilingSecurityInformation>
+    <TaxYr>2017</TaxYr>
+    <BuildTS>2019-02-21 02:37:17Z</BuildTS>
+  </ReturnHeader>
+  <ReturnData documentCnt="6">
+    <IRS990 documentId="RetDoc2" referenceDocumentId="RetDoc4">
+      <AddressChangeInd>X</AddressChangeInd>
+      <PrincipalOfficerNm>MAUREEN CARVILLE</PrincipalOfficerNm>
+      <USAddress>
+        <AddressLine1Txt>55 CARTER STREET</AddressLine1Txt>
+        <CityNm>BERLIN</CityNm>
+        <StateAbbreviationCd>MA</StateAbbreviationCd>
+        <ZIPCd>01503</ZIPCd>
+      </USAddress>
+      <GrossReceiptsAmt>130306</GrossReceiptsAmt>
+      <GroupReturnForAffiliatesInd>false</GroupReturnForAffiliatesInd>
+      <Organization501c3Ind>X</Organization501c3Ind>
+      <TypeOfOrganizationCorpInd>X</TypeOfOrganizationCorpInd>
+      <FormationYr>1981</FormationYr>
+      <LegalDomicileStateCd>NY</LegalDomicileStateCd>
+      <ActivityOrMissionDesc>DISTRIBUTION OF LITERATURE, MUSIC, AND OTHER RELATED RESOURCES WHICH COMPLIMENT LITERATURE; SUPPORT OF MINISTRIES.</ActivityOrMissionDesc>
+      <VotingMembersGoverningBodyCnt>4</VotingMembersGoverningBodyCnt>
+      <VotingMembersIndependentCnt>4</VotingMembersIndependentCnt>
+      <TotalEmployeeCnt>0</TotalEmployeeCnt>
+      <TotalGrossUBIAmt>0</TotalGrossUBIAmt>
+      <PYContributionsGrantsAmt>138545</PYContributionsGrantsAmt>
+      <CYContributionsGrantsAmt>130306</CYContributionsGrantsAmt>
+      <CYProgramServiceRevenueAmt>0</CYProgramServiceRevenueAmt>
+      <CYInvestmentIncomeAmt>0</CYInvestmentIncomeAmt>
+      <CYOtherRevenueAmt>0</CYOtherRevenueAmt>
+      <PYTotalRevenueAmt>138545</PYTotalRevenueAmt>
+      <CYTotalRevenueAmt>130306</CYTotalRevenueAmt>
+      <PYGrantsAndSimilarPaidAmt>132083</PYGrantsAndSimilarPaidAmt>
+      <CYGrantsAndSimilarPaidAmt>126889</CYGrantsAndSimilarPaidAmt>
+      <CYBenefitsPaidToMembersAmt>0</CYBenefitsPaidToMembersAmt>
+      <CYSalariesCompEmpBnftPaidAmt>0</CYSalariesCompEmpBnftPaidAmt>
+      <CYTotalProfFndrsngExpnsAmt>0</CYTotalProfFndrsngExpnsAmt>
+      <CYTotalFundraisingExpenseAmt>0</CYTotalFundraisingExpenseAmt>
+      <PYOtherExpensesAmt>2552</PYOtherExpensesAmt>
+      <CYOtherExpensesAmt>1985</CYOtherExpensesAmt>
+      <PYTotalExpensesAmt>134635</PYTotalExpensesAmt>
+      <CYTotalExpensesAmt>128874</CYTotalExpensesAmt>
+      <PYRevenuesLessExpensesAmt>3910</PYRevenuesLessExpensesAmt>
+      <CYRevenuesLessExpensesAmt>1432</CYRevenuesLessExpensesAmt>
+      <TotalAssetsBOYAmt>7202</TotalAssetsBOYAmt>
+      <TotalAssetsEOYAmt>8634</TotalAssetsEOYAmt>
+      <TotalLiabilitiesEOYAmt>0</TotalLiabilitiesEOYAmt>
+      <NetAssetsOrFundBalancesBOYAmt>7202</NetAssetsOrFundBalancesBOYAmt>
+      <NetAssetsOrFundBalancesEOYAmt>8634</NetAssetsOrFundBalancesEOYAmt>
+      <MissionDesc>DISTRIBUTION OF LITERATURE, MUSIC, AND OTHER RELATED RESOURCES WHICH COMPLIMENT LITERATURE; SUPPORT OF MINISTRIES.</MissionDesc>
+      <SignificantNewProgramSrvcInd>false</SignificantNewProgramSrvcInd>
+      <SignificantChangeInd>false</SignificantChangeInd>
+      <ExpenseAmt>11396</ExpenseAmt>
+      <GrantAmt>11396</GrantAmt>
+      <Desc>THE MISSION WAS FULFILLED VIA THE SUPPORT OF LITERATURE PROJECTS IN HUNGARY PROVIDING LITERATURE TO THOUSANDS OF PEOPLE IN THESE REGIONS. MAJORITY OF LITERATURE PROVIDED FREE OF CHARGE; OTHER LITERATURE PROVIDED THROUGH BOOKSTORES; DIRCT SUPPORT OF CHURCH BASED MINISTRIES.</Desc>
+      <ProgSrvcAccomActy2Grp>
+        <ExpenseAmt>115493</ExpenseAmt>
+        <GrantAmt>115493</GrantAmt>
+        <Desc>THE MISSION WAS FULFILLED VIA THE SUPPORT OF LITERATURE PROJECTS IN NEW ENGLAND AND THE SURROUNDING REGION TO PROVIDE MATERIALS TO THOUSANDS OF PEOPLE IN THESE REGIONS. THE MAJORITY OF LITERATURE WAS DISTRIBUTED FREE OF CHARGE; OTHER MATERIALS WERE DISTRIBUTED THROUGH BOOKSTORES. SUPPORT OF CHRISTIAN OUTREACH PROJECTS IN NEW ENGLAND.</Desc>
+      </ProgSrvcAccomActy2Grp>
+      <TotalProgramServiceExpensesAmt>126889</TotalProgramServiceExpensesAmt>
+      <DescribedInSection501c3Ind referenceDocumentId="RetDoc5">true</DescribedInSection501c3Ind>
+      <ScheduleBRequiredInd referenceDocumentId="RetDoc1">true</ScheduleBRequiredInd>
+      <PoliticalCampaignActyInd>false</PoliticalCampaignActyInd>
+      <LobbyingActivitiesInd>false</LobbyingActivitiesInd>
+      <SubjectToProxyTaxInd>false</SubjectToProxyTaxInd>
+      <DonorAdvisedFundInd>false</DonorAdvisedFundInd>
+      <ConservationEasementsInd>false</ConservationEasementsInd>
+      <CollectionsOfArtInd>false</CollectionsOfArtInd>
+      <CreditCounselingInd>false</CreditCounselingInd>
+      <TempOrPermanentEndowmentsInd>false</TempOrPermanentEndowmentsInd>
+      <ReportLandBuildingEquipmentInd>false</ReportLandBuildingEquipmentInd>
+      <ReportInvestmentsOtherSecInd>false</ReportInvestmentsOtherSecInd>
+      <ReportProgramRelatedInvstInd>false</ReportProgramRelatedInvstInd>
+      <ReportOtherAssetsInd>false</ReportOtherAssetsInd>
+      <ReportOtherLiabilitiesInd>false</ReportOtherLiabilitiesInd>
+      <IncludeFIN48FootnoteInd>false</IncludeFIN48FootnoteInd>
+      <IndependentAuditFinclStmtInd>false</IndependentAuditFinclStmtInd>
+      <ConsolidatedAuditFinclStmtInd>false</ConsolidatedAuditFinclStmtInd>
+      <SchoolOperatingInd>false</SchoolOperatingInd>
+      <ForeignOfficeInd>false</ForeignOfficeInd>
+      <ForeignActivitiesInd referenceDocumentId="RetDoc6">false</ForeignActivitiesInd>
+      <MoreThan5000KToOrgInd referenceDocumentId="RetDoc6">false</MoreThan5000KToOrgInd>
+      <MoreThan5000KToIndividualsInd referenceDocumentId="RetDoc6">true</MoreThan5000KToIndividualsInd>
+      <ProfessionalFundraisingInd>false</ProfessionalFundraisingInd>
+      <FundraisingActivitiesInd>false</FundraisingActivitiesInd>
+      <GamingActivitiesInd>false</GamingActivitiesInd>
+      <OperateHospitalInd>false</OperateHospitalInd>
+      <GrantsToOrganizationsInd referenceDocumentId="RetDoc3">false</GrantsToOrganizationsInd>
+      <GrantsToIndividualsInd referenceDocumentId="RetDoc3">true</GrantsToIndividualsInd>
+      <ScheduleJRequiredInd>false</ScheduleJRequiredInd>
+      <TaxExemptBondsInd>false</TaxExemptBondsInd>
+      <EngagedInExcessBenefitTransInd>false</EngagedInExcessBenefitTransInd>
+      <PYExcessBenefitTransInd>false</PYExcessBenefitTransInd>
+      <LoanOutstandingInd>false</LoanOutstandingInd>
+      <GrantToRelatedPersonInd>false</GrantToRelatedPersonInd>
+      <BusinessRlnWithOrgMemInd>false</BusinessRlnWithOrgMemInd>
+      <BusinessRlnWithFamMemInd>false</BusinessRlnWithFamMemInd>
+      <BusinessRlnWithOfficerEntInd>false</BusinessRlnWithOfficerEntInd>
+      <DeductibleNonCashContriInd>false</DeductibleNonCashContriInd>
+      <DeductibleArtContributionInd>false</DeductibleArtContributionInd>
+      <TerminateOperationsInd>false</TerminateOperationsInd>
+      <PartialLiquidationInd>false</PartialLiquidationInd>
+      <DisregardedEntityInd>false</DisregardedEntityInd>
+      <RelatedEntityInd>false</RelatedEntityInd>
+      <RelatedOrganizationCtrlEntInd>false</RelatedOrganizationCtrlEntInd>
+      <TrnsfrExmptNonChrtblRltdOrgInd>false</TrnsfrExmptNonChrtblRltdOrgInd>
+      <ActivitiesConductedPrtshpInd>false</ActivitiesConductedPrtshpInd>
+      <ScheduleORequiredInd>false</ScheduleORequiredInd>
+      <IRPDocumentCnt>3</IRPDocumentCnt>
+      <IRPDocumentW2GCnt>0</IRPDocumentW2GCnt>
+      <EmployeeCnt>0</EmployeeCnt>
+      <UnrelatedBusIncmOverLimitInd>false</UnrelatedBusIncmOverLimitInd>
+      <ForeignFinancialAccountInd>false</ForeignFinancialAccountInd>
+      <ProhibitedTaxShelterTransInd>false</ProhibitedTaxShelterTransInd>
+      <TaxablePartyNotificationInd>false</TaxablePartyNotificationInd>
+      <NondeductibleContributionsInd>false</NondeductibleContributionsInd>
+      <IndoorTanningServicesInd>false</IndoorTanningServicesInd>
+      <InfoInScheduleOPartVIInd>X</InfoInScheduleOPartVIInd>
+      <GoverningBodyVotingMembersCnt>4</GoverningBodyVotingMembersCnt>
+      <IndependentVotingMemberCnt>4</IndependentVotingMemberCnt>
+      <FamilyOrBusinessRlnInd>false</FamilyOrBusinessRlnInd>
+      <DelegationOfMgmtDutiesInd>false</DelegationOfMgmtDutiesInd>
+      <ChangeToOrgDocumentsInd>false</ChangeToOrgDocumentsInd>
+      <MaterialDiversionOrMisuseInd>false</MaterialDiversionOrMisuseInd>
+      <MembersOrStockholdersInd>false</MembersOrStockholdersInd>
+      <ElectionOfBoardMembersInd>false</ElectionOfBoardMembersInd>
+      <DecisionsSubjectToApprovaInd>false</DecisionsSubjectToApprovaInd>
+      <MinutesOfGoverningBodyInd>true</MinutesOfGoverningBodyInd>
+      <MinutesOfCommitteesInd>true</MinutesOfCommitteesInd>
+      <OfficerMailingAddressInd>false</OfficerMailingAddressInd>
+      <LocalChaptersInd>false</LocalChaptersInd>
+      <Form990ProvidedToGvrnBodyInd>true</Form990ProvidedToGvrnBodyInd>
+      <ConflictOfInterestPolicyInd>false</ConflictOfInterestPolicyInd>
+      <WhistleblowerPolicyInd>false</WhistleblowerPolicyInd>
+      <DocumentRetentionPolicyInd>false</DocumentRetentionPolicyInd>
+      <CompensationProcessCEOInd>false</CompensationProcessCEOInd>
+      <CompensationProcessOtherInd>false</CompensationProcessOtherInd>
+      <InvestmentInJointVentureInd>false</InvestmentInJointVentureInd>
+      <StatesWhereCopyOfReturnIsFldCd>NY</StatesWhereCopyOfReturnIsFldCd>
+      <UponRequestInd>X</UponRequestInd>
+      <BooksInCareOfDetail>
+        <PersonNm>MAUREEN CARVILLE</PersonNm>
+        <PhoneNum>9783761886</PhoneNum>
+        <USAddress>
+          <AddressLine1Txt>55 CARTER STREET</AddressLine1Txt>
+          <CityNm>BERLIN</CityNm>
+          <StateAbbreviationCd>MA</StateAbbreviationCd>
+          <ZIPCd>01503</ZIPCd>
+        </USAddress>
+      </BooksInCareOfDetail>
+      <NoListedPersonsCompensatedInd>X</NoListedPersonsCompensatedInd>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>MAUREEN CARVILLE</PersonNm>
+        <TitleTxt>PRESIDENT</TitleTxt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>WILLARD DICKERSON JR</PersonNm>
+        <TitleTxt>VICE PRESIDE</TitleTxt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>KEITH CARVILLE</PersonNm>
+        <TitleTxt>SECRETARY</TitleTxt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>LEIGH LORD</PersonNm>
+        <TitleTxt>TREASURER</TitleTxt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <FormerOfcrEmployeesListedInd>false</FormerOfcrEmployeesListedInd>
+      <TotalCompGreaterThan150KInd>false</TotalCompGreaterThan150KInd>
+      <CompensationFromOtherSrcsInd>false</CompensationFromOtherSrcsInd>
+      <AllOtherContributionsAmt>130306</AllOtherContributionsAmt>
+      <TotalContributionsAmt>130306</TotalContributionsAmt>
+      <TotalRevenueGrp>
+        <TotalRevenueColumnAmt>130306</TotalRevenueColumnAmt>
+      </TotalRevenueGrp>
+      <GrantsToDomesticOrgsGrp>
+        <TotalAmt>5046</TotalAmt>
+        <ProgramServicesAmt>5046</ProgramServicesAmt>
+      </GrantsToDomesticOrgsGrp>
+      <GrantsToDomesticIndividualsGrp>
+        <TotalAmt>110447</TotalAmt>
+        <ProgramServicesAmt>110447</ProgramServicesAmt>
+      </GrantsToDomesticIndividualsGrp>
+      <ForeignGrantsGrp>
+        <TotalAmt>11396</TotalAmt>
+        <ProgramServicesAmt>11396</ProgramServicesAmt>
+      </ForeignGrantsGrp>
+      <FeesForServicesAccountingGrp>
+        <TotalAmt>1509</TotalAmt>
+        <ManagementAndGeneralAmt>1509</ManagementAndGeneralAmt>
+      </FeesForServicesAccountingGrp>
+      <OfficeExpensesGrp>
+        <TotalAmt>426</TotalAmt>
+        <ManagementAndGeneralAmt>426</ManagementAndGeneralAmt>
+      </OfficeExpensesGrp>
+      <OtherExpensesGrp>
+        <Desc>STATE FILING FEES</Desc>
+        <TotalAmt>50</TotalAmt>
+        <ManagementAndGeneralAmt>50</ManagementAndGeneralAmt>
+      </OtherExpensesGrp>
+      <TotalFunctionalExpensesGrp>
+        <TotalAmt>128874</TotalAmt>
+        <ProgramServicesAmt>126889</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>1985</ManagementAndGeneralAmt>
+        <FundraisingAmt>0</FundraisingAmt>
+      </TotalFunctionalExpensesGrp>
+      <CashNonInterestBearingGrp>
+        <BOYAmt>7202</BOYAmt>
+        <EOYAmt>8634</EOYAmt>
+      </CashNonInterestBearingGrp>
+      <TotalAssetsGrp>
+        <BOYAmt>7202</BOYAmt>
+        <EOYAmt>8634</EOYAmt>
+      </TotalAssetsGrp>
+      <TotalLiabilitiesGrp>
+        <BOYAmt>0</BOYAmt>
+        <EOYAmt>0</EOYAmt>
+      </TotalLiabilitiesGrp>
+      <OrganizationFollowsSFAS117Ind>X</OrganizationFollowsSFAS117Ind>
+      <UnrestrictedNetAssetsGrp>
+        <BOYAmt>7202</BOYAmt>
+        <EOYAmt>8634</EOYAmt>
+      </UnrestrictedNetAssetsGrp>
+      <TotalNetAssetsFundBalanceGrp>
+        <BOYAmt>7202</BOYAmt>
+        <EOYAmt>8634</EOYAmt>
+      </TotalNetAssetsFundBalanceGrp>
+      <TotLiabNetAssetsFundBalanceGrp>
+        <BOYAmt>7202</BOYAmt>
+        <EOYAmt>8634</EOYAmt>
+      </TotLiabNetAssetsFundBalanceGrp>
+      <ReconcilationRevenueExpnssAmt>1432</ReconcilationRevenueExpnssAmt>
+      <MethodOfAccountingCashInd>X</MethodOfAccountingCashInd>
+      <AccountantCompileOrReviewInd>true</AccountantCompileOrReviewInd>
+      <AcctCompileOrReviewBasisGrp>
+        <SeparateBasisFinclStmtInd>X</SeparateBasisFinclStmtInd>
+      </AcctCompileOrReviewBasisGrp>
+      <FSAuditedInd>false</FSAuditedInd>
+      <FederalGrantAuditRequiredInd>false</FederalGrantAuditRequiredInd>
+    </IRS990>
+    <IRS990ScheduleA documentId="RetDoc5">
+      <PublicOrganization170Ind>X</PublicOrganization170Ind>
+      <GiftsGrantsContriRcvd170Grp>
+        <CurrentTaxYearMinus4YearsAmt>213262</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>131645</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>112910</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>138545</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>130306</CurrentTaxYearAmt>
+        <TotalAmt>726668</TotalAmt>
+      </GiftsGrantsContriRcvd170Grp>
+      <TotalCalendarYear170Grp>
+        <CurrentTaxYearMinus4YearsAmt>213262</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>131645</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>112910</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>138545</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>130306</CurrentTaxYearAmt>
+        <TotalAmt>726668</TotalAmt>
+      </TotalCalendarYear170Grp>
+      <SubstantialContributorsTotAmt>131734</SubstantialContributorsTotAmt>
+      <PublicSupportTotal170Amt>594934</PublicSupportTotal170Amt>
+      <GrossInvestmentIncome170Grp>
+        <CurrentTaxYearMinus3YearsAmt>5</CurrentTaxYearMinus3YearsAmt>
+        <TotalAmt>5</TotalAmt>
+      </GrossInvestmentIncome170Grp>
+      <TotalSupportAmt>726673</TotalSupportAmt>
+      <PublicSupportCY170Pct>0.81870</PublicSupportCY170Pct>
+      <PublicSupportPY170Pct>0.84340</PublicSupportPY170Pct>
+      <ThirtyThrPctSuprtTestsCY170Ind>X</ThirtyThrPctSuprtTestsCY170Ind>
+    </IRS990ScheduleA>
+    <IRS990ScheduleB documentId="RetDoc1" />
+    <IRS990ScheduleF documentId="RetDoc6">
+      <ForeignIndividualsGrantsGrp>
+        <TypeOfAssistanceTxt>PROGRAM SUPPORT</TypeOfAssistanceTxt>
+        <RegionTxt>HUNGARY</RegionTxt>
+        <RecipientCnt>1</RecipientCnt>
+        <CashGrantAmt>11396</CashGrantAmt>
+        <MannerOfCashDisbursementTxt>CHECK</MannerOfCashDisbursementTxt>
+      </ForeignIndividualsGrantsGrp>
+      <TransferToForeignCorpInd>false</TransferToForeignCorpInd>
+      <InterestInForeignTrustInd>false</InterestInForeignTrustInd>
+      <ForeignCorpOwnershipInd>false</ForeignCorpOwnershipInd>
+      <PassiveForeignInvestmestCoInd>false</PassiveForeignInvestmestCoInd>
+      <ForeignPartnershipInd>false</ForeignPartnershipInd>
+      <BoycottCountriesInd>false</BoycottCountriesInd>
+    </IRS990ScheduleF>
+    <IRS990ScheduleI documentId="RetDoc3">
+      <GrantRecordsMaintainedInd>true</GrantRecordsMaintainedInd>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>6500</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>8500</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>9500</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>8500</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>9000</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>9000</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>9500</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>5500</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>6000</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>5000</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>6000</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>5500</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>6000</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>1201</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>1200</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>1690</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>2180</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>1286</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>980</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>1422</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>1188</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>2800</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>1000</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+      <GrantsOtherAsstToIndivInUSGrp>
+        <GrantTypeTxt>PROGRAM SUPPORT</GrantTypeTxt>
+        <CashGrantAmt>1000</CashGrantAmt>
+      </GrantsOtherAsstToIndivInUSGrp>
+    </IRS990ScheduleI>
+    <IRS990ScheduleO documentId="RetDoc4">
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PAGE 6, PART VI, LINE 11B</FormAndLineReferenceDesc>
+        <ExplanationTxt>FORM IS REVIEWED BY OFFICERS AND DIRECTORS BEFORE FILING.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PAGE 6, PART VI, LINE 19</FormAndLineReferenceDesc>
+        <ExplanationTxt>NO DOCUMENTS AVAILABLE TO THE PUBLIC</ExplanationTxt>
+      </SupplementalInformationDetail>
+    </IRS990ScheduleO>
+  </ReturnData>
+</Return>
