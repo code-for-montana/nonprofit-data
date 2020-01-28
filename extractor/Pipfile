@@ -12,15 +12,16 @@ pytest = "*"
 rope = "*"
 bandit = "*"
 mypy = "*"
+isort = "*"
+autoflake = "*"
 
 [packages]
 irsx = "*"
 pandas = "*"
-lxml = "*"
 cssselect = "*"
 requests = "*"
-defusedxml = "*"
 setuptools = "*"
+defusedxml = "*"
 
 [requires]
 python_version = "3.8"

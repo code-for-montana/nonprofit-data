@@ -1,5 +1,7 @@
 from __future__ import annotations
-from typing import Any, Callable, Dict, Iterable, Iterator, Optional, NamedTuple
+
+from typing import Any, Dict, Iterable, Iterator
+
 from .downloader import Downloader
 from .filing import Filing
 from .index import Index
@@ -61,7 +63,6 @@ class Result:
         first `n` results.
         """
         # TODO: Implement me
-        pass
 
     def take(self, n: int) -> Result:
         """
@@ -69,7 +70,6 @@ class Result:
         first `n` results.
         """
         # TODO: Implement me
-        pass
 
     def to_json(self) -> Dict[str, Any]:
         """

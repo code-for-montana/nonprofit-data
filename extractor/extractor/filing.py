@@ -1,9 +1,10 @@
 from __future__ import annotations
-from dataclasses import Field, InitVar, asdict, dataclass, field, fields
-from logging import getLogger
-from typing import Any, Callable, Dict, NamedTuple, Optional, TextIO
-from .querier import Querier
 
+from dataclasses import asdict, dataclass, field, fields
+from logging import getLogger
+from typing import Any, Callable, Dict, Optional
+
+from .querier import Querier
 
 _logger = getLogger(__name__)
 
@@ -55,7 +56,7 @@ def two_part_str_factory(
     def _factory(querier: Querier) -> Optional[str]:
         line1 = querier.find_str(path1)
         line2 = querier.find_str(path2)
-        full = sep.join([l for l in [line1, line2] if l is not None])
+        full: str = sep.join([l for l in [line1, line2] if l is not None])
         if full == "":
             return None
         return full

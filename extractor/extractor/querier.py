@@ -1,8 +1,9 @@
 from __future__ import annotations
-from defusedxml import ElementTree
+
 from logging import getLogger
 from typing import Dict, Optional, TextIO
 
+from defusedxml import ElementTree
 
 _logger = getLogger(__name__)
 
@@ -30,8 +31,8 @@ class Querier:
         Jupyter) use.
         """
         _logger.debug(f"create querier for '{xml_path}'")
-        with open(xml_path) as xmlFile:
-            return Querier.from_file(xmlFile)
+        with open(xml_path) as xml_file:
+            return Querier.from_file(xml_file)
 
     @staticmethod
     def from_file(xml_file: TextIO) -> Querier:
@@ -47,10 +48,10 @@ class Querier:
         while not content.startswith("<"):
             content = content[1:]
 
-        byteContent = content.encode("utf-8")
-        _logger.info(f"hydrate querier: '{str(byteContent[:40])}'")
+        byte_content = content.encode("utf-8")
+        _logger.info(f"hydrate querier: '{str(byte_content[:40])}'")
 
-        tree = ElementTree.fromstring(byteContent)
+        tree = ElementTree.fromstring(byte_content)
 
         return Querier(tree)
 
@@ -67,13 +68,13 @@ class Querier:
         """
         _logger.debug(f"find float at '{path}'")
 
-        rawValue = self.find_str(path)
-        _logger.debug(f"found float - '{rawValue}'")
+        raw_value = self.find_str(path)
+        _logger.debug(f"found float - '{raw_value}'")
 
-        if rawValue is None:
+        if raw_value is None:
             return None
 
-        return float(rawValue)
+        return float(raw_value)
 
     def find_int(self, path: str) -> Optional[int]:
         """
@@ -83,13 +84,13 @@ class Querier:
 
         _logger.debug(f"find int at '{path}'")
 
-        rawValue = self.find_str(path)
-        _logger.debug(f"found int - '{rawValue}'")
+        raw_value = self.find_str(path)
+        _logger.debug(f"found int - '{raw_value}'")
 
-        if rawValue is None:
+        if raw_value is None:
             return None
 
-        return int(rawValue)
+        return int(raw_value)
 
     def find_str(self, path: str) -> Optional[str]:
         """
@@ -99,17 +100,19 @@ class Querier:
 
         _logger.debug(f"find str at '{path}'")
 
-        fullPath = self._add_namespace(path)
-        _logger.debug(f"find str at '{fullPath}'")
+        full_path = self._add_namespace(path)
+        _logger.debug(f"find str at '{full_path}'")
 
-        element = self._tree.find(fullPath, namespaces=self._namespaces)
+        element = self._tree.find(full_path, namespaces=self._namespaces)
 
         if element is None:
             _logger.debug(f"found str - '{None}'")
             return None
 
-        _logger.debug(f"found str - '{element.text}'")
-        return element.text
+        element_content: str = element.text
+
+        _logger.debug(f"found str - '{element_content}'")
+        return element_content
 
     @staticmethod
     def _add_namespace(path: str) -> str:
