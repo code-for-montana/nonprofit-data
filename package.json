@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "d3": "^5.15.0",
+    "d3blackbox": "^1.2.0",
     "gatsby": "^2.18.3",
     "gatsby-image": "^2.2.33",
     "gatsby-plugin-manifest": "^2.2.29",
