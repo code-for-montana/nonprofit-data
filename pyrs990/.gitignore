@@ -1,8 +1,7 @@
 .idea/
 .pyc
-.extractor/
 .mypy_cache/
 __pycache__/
-.extractor-cache/
+.pyrs990-cache/
 .ipynb_checkpoints/
 
