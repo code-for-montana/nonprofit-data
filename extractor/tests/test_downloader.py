@@ -1,6 +1,6 @@
 import pytest
 
-from extractor import (
+from pyrs990 import (
     AWS_FILING_TEMPLATE,
     DownloaderException,
     HTTPDownloader,

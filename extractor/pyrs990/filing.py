@@ -74,7 +74,7 @@ class Filing:
     TODO: Explain how to add a new field
     TODO: Consider making this "frozen", see Python docs for implications
 
-    >>> from extractor import Querier
+    >>> from pyrs990 import Querier
     >>> q = Querier.from_path("fixtures/filing.xml")
     >>> f = Filing(q)
     >>> f.formation_year

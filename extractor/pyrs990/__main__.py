@@ -1,7 +1,6 @@
 import sys
 
-from extractor import app
-
+from . import app
 from ._options import Options, parser
 
 if __name__ == "__main__":

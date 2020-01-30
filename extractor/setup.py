@@ -2,7 +2,7 @@ from os import path
 
 from setuptools import find_packages, setup
 
-from extractor.constants import (
+from pyrs990.constants import (
     CURRENT_VERSION,
     PROGRAM_DESCRIPTION,
     PROGRAM_NAME,

@@ -3,7 +3,7 @@ from typing import NamedTuple
 
 import pytest
 
-from extractor.constants import CURRENT_VERSION, PROGRAM_NAME
+from pyrs990.constants import CURRENT_VERSION, PROGRAM_NAME
 
 
 class Return(NamedTuple):

@@ -16,8 +16,8 @@ use with the `HTTPDownloader` to download index documents.
 
 CURRENT_VERSION = "0.0.1"
 
-DEFAULT_CACHE_PATH = ".extractor-cache"
+DEFAULT_CACHE_PATH = ".pyrs990-cache"
 
 PROGRAM_DESCRIPTION = "A utility to extract and serialize IRS Form 990 data on non-profit organizations."
 
-PROGRAM_NAME = "extractor"
+PROGRAM_NAME = "pyrs990"
