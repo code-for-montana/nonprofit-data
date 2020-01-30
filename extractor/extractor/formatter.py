@@ -2,10 +2,9 @@ from __future__ import annotations
 
 import json
 import sys
-from typing import TextIO, Optional, Iterable, Callable, Dict, Type
+from typing import Callable, Dict, Iterable, Optional, TextIO, Type
 
 from .filing import Filing
-
 
 _formatters: Dict[str, Callable[[str], Formatter]] = {}
 """

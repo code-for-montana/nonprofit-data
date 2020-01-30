@@ -1,26 +1,49 @@
 from __future__ import annotations
-import sys
-from argparse import ArgumentParser, Namespace
+
 import dataclasses as dc
 import json
-from typing import Any, Dict, Mapping, NamedTuple
+from argparse import ArgumentParser, Namespace
+from datetime import datetime
+from typing import Any, Dict, Iterable, List, Mapping, NamedTuple
+
+from .cache import Cache, DirectoryCache, MemoryCache
+from .constants import (
+    CURRENT_VERSION,
+    DEFAULT_CACHE_PATH,
+    PROGRAM_DESCRIPTION,
+    PROGRAM_NAME,
+)
 from .filing import Filing
 from .formatter import (
-    Formatter,
     FileFormatter,
-    registered_formatters,
+    Formatter,
     get_formatter,
+    registered_formatters,
 )
 from .index import IndexRecord
 
 parser = ArgumentParser(
-    prog="extractor",
-    description="A utility to extract and serialize IRS 990 non-profits data.",
-    epilog='A project of "Code for Montana".',
+    prog=PROGRAM_NAME,
+    description=PROGRAM_DESCRIPTION,
+    epilog="A project of *Code for Montana*.",
 )
 
 parser.add_argument(
-    "--version", "-v", action="version", version="0.0.1",
+    "--version", "-v", action="version", version=CURRENT_VERSION,
+)
+
+parser.add_argument(
+    "--cache-to-disk",
+    action="store_true",
+    default=False,
+    help="Cache index and filing documents to disk",
+)
+
+parser.add_argument(
+    "--cache-path",
+    type=str,
+    default=DEFAULT_CACHE_PATH,
+    help="Path to use for reading and writing cache data",
 )
 
 parser.add_argument(
@@ -56,6 +79,13 @@ parser.add_argument(
     help="File to which output should be written (or ':stdout:', ':stderr:')",
 )
 
+parser.add_argument(
+    "--years",
+    type=str,
+    default=":current:",
+    help="Years to search, comma-separated (':current:' is the current year)",
+)
+
 # -------------------- #
 # Index record filters #
 # -------------------- #
@@ -86,56 +116,83 @@ class Options(NamedTuple):
         if formatter is None:
             formatter = FileFormatter(args.destination)
 
+        index_cache: Cache
+        filing_cache: Cache
+        if args.cache_to_disk:
+            index_cache = DirectoryCache(".csv", args.cache_path)
+            filing_cache = DirectoryCache(".xml", args.cache_path)
+        else:
+            index_cache = MemoryCache()
+            filing_cache = MemoryCache()
+
         # Gather all the index filters
-        indexFilters: Dict[str, str] = {}
-        for indexFieldName in IndexRecord._fields:
-            if hasattr(args, indexFieldName):
-                value = getattr(args, indexFieldName)
+        index_filters: Dict[str, str] = {}
+        for index_field_name in IndexRecord._fields:
+            if hasattr(args, index_field_name):
+                value = getattr(args, index_field_name)
                 if value is not None:
-                    indexFilters[indexFieldName] = value
+                    index_filters[index_field_name] = value
 
         # Gather all the filing filters
-        filingFilters: Dict[str, str] = {}
-        for filingField in dc.fields(Filing):
-            name = filingField.name
+        filing_filters: Dict[str, str] = {}
+        for filing_field in dc.fields(Filing):
+            name = filing_field.name
             if hasattr(args, name):
                 value = getattr(args, name)
                 if value is not None:
-                    filingFilters[name] = value
+                    filing_filters[name] = value
 
         # Check for JSON files specifying filters
         if args.load_filters is not None:
-            for filtersPath in args.load_filters:
-                with open(filtersPath) as filtersFile:
-                    filtersData: Dict[str, Any] = json.load(filtersFile)
+            for filters_path in args.load_filters:
+                with open(filters_path) as filters_file:
+                    filters_data: Dict[str, Any] = json.load(filters_file)
 
                 # JSON file has two top-level keys, "index" and "filing"
 
-                indexData: Dict[str, str] = filtersData["index"]
-                if indexData is not None:
-                    indexFilters.update(indexData)
+                index_data: Dict[str, str] = filters_data["index"]
+                if index_data is not None:
+                    index_filters.update(index_data)
 
-                filingData: Dict[str, str] = filtersData["filing"]
-                if filingData is not None:
-                    filingFilters.update(filingData)
+                filing_data: Dict[str, str] = filters_data["filing"]
+                if filing_data is not None:
+                    filing_filters.update(filing_data)
 
         # Save filters if we need to do so
         if args.save_filters is not None:
             payload = {
-                "index": indexFilters,
-                "filing": filingFilters,
+                "index": index_filters,
+                "filing": filing_filters,
             }
             with open(args.save_filters, "w") as saveFile:
                 json.dump(payload, saveFile)
 
+        # Figure out the years we want
+        years: List[str] = []
+        years_str = args.years.split(",")
+        for year_str in years_str:
+            if year_str == ":current:":
+                years.append(str(datetime.today().year))
+                continue
+            years.append(year_str)
+
         return Options(
             formatter=formatter,
-            filing_filters=filingFilters,
-            index_filters=indexFilters,
+            filing_cache=filing_cache,
+            index_cache=index_cache,
+            filing_filters=filing_filters,
+            index_filters=index_filters,
             to_json=args.to_json,
+            years=years,
         )
 
     formatter: Formatter
+
+    filing_cache: Cache
+
+    index_cache: Cache
+
+    years: Iterable[str]
 
     filing_filters: Mapping[str, str] = {}
 

@@ -1,6 +1,7 @@
 import pytest
+
 from extractor import (
-    AWS_TEMPLATE,
+    AWS_FILING_TEMPLATE,
     DownloaderException,
     HTTPDownloader,
     MemoryCache,
@@ -9,7 +10,7 @@ from extractor import (
 
 @pytest.mark.network
 def test_HTTPDownloader_fetch_with_aws():
-    downloader = HTTPDownloader(AWS_TEMPLATE, MemoryCache())
+    downloader = HTTPDownloader(AWS_FILING_TEMPLATE, MemoryCache())
     reader = downloader.fetch("201541349349307794")
     content = reader.read()
     assert "<?xml" in content
@@ -17,7 +18,7 @@ def test_HTTPDownloader_fetch_with_aws():
 
 @pytest.mark.network
 def test_HTTPDownloader_fetch_bad_url():
-    downloader = HTTPDownloader(AWS_TEMPLATE, MemoryCache())
+    downloader = HTTPDownloader(AWS_FILING_TEMPLATE, MemoryCache())
     with pytest.raises(DownloaderException):
         downloader.fetch("nonsense")
 

@@ -1,6 +1,8 @@
-from extractor import app
 import sys
-from ._options import parser, Options
+
+from extractor import app
+
+from ._options import Options, parser
 
 if __name__ == "__main__":
     import logging

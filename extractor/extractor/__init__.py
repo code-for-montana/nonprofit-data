@@ -1,15 +1,15 @@
 from .cache import Cache, DirectoryCache, MemoryCache
-from .downloader import (
-    AWS_TEMPLATE,
-    Downloader,
-    DownloaderException,
-    HTTPDownloader,
+from .constants import (
+    AWS_FILING_TEMPLATE,
+    AWS_INDEX_TEMPLATE,
+    DEFAULT_CACHE_PATH,
 )
+from .downloader import Downloader, DownloaderException, HTTPDownloader
 from .filing import Filing
 from .formatter import (
+    FileFormatter,
     Formatter,
     FormatterException,
-    FileFormatter,
     JSONFormatter,
 )
 from .index import FilteredIndex, Index, IndexRecord

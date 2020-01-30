@@ -1,6 +1,5 @@
 from typing import Callable, TypeVar
 
-
 FilterT = TypeVar("FilterT")
 
 
