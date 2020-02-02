@@ -101,13 +101,17 @@ const defaultMarker = (d) => {
 export const MapPointLayer = (props) => {
     // returns svg group with point features
     const {projection, pointFeatures, markerGenerator=defaultMarker} = props
-    // pointFeatures is array of data elements with latitude and longitude values
+    // pointFeatures is array of geojson MultiPoint features
+    // See logic/convertFlatDataToGeojson for converting "flat" jsons
     // markerGenerator is jsx function of feature data returning svg marker
 
+    const makeSVGPath = geoPath().projection(projection);
+
     const markers = pointFeatures.map((d, i) => {
-        const point = projection([d.longitude, d.latitude])
+        // const point = projection([d.longitude, d.latitude])
+        const centroid = makeSVGPath.centroid(d)
         return <g className={`marker-container`} key={String(i)}
-            transform={`translate(${point[0]},${point[1]})`}
+            transform={`translate(${centroid[0]},${centroid[1]})`}
         >
             {markerGenerator(d)}
         </g>

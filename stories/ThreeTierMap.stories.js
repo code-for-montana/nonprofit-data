@@ -2,11 +2,19 @@ import React from 'react';
 
 import ThreeTierMap from '../src/components/ThreeTierMap'
 
+import {
+  convertFlatDataToGeojson
+} from '../src/logic/logic.js'
+
 import nonprofits from '../src/data/eo-mt-app-extract-2019-filers-only.json'
 import cities from '../src/data/mt-cities-with-centroids.json'
+import counties from '../src/data/mt-counties-geojson.json'
 
-console.log('Nonprofits', nonprofits)
-console.log('Cities', cities)
+const baseData = {
+  nonprofits,
+  counties,
+  cities: convertFlatDataToGeojson(cities)
+}
 
 export default {
     title: 'ThreeTierMap',
@@ -15,8 +23,7 @@ export default {
 
 export const StateView = () => {
   return <ThreeTierMap
-    nonprofits={nonprofits}
-    cities={cities}
+    {... baseData }
 
     initialState={{
       viewLevel: 'state',
@@ -27,8 +34,7 @@ export const StateView = () => {
 
 export const CountyViewMissoula = () => {
   return <ThreeTierMap
-    nonprofits={nonprofits}
-    cities={cities}
+  {... baseData }
 
     initialState={{
       viewLevel: 'county',
@@ -39,8 +45,7 @@ export const CountyViewMissoula = () => {
 
 export const CountyViewRosebud = () => {
   return <ThreeTierMap
-    nonprofits={nonprofits}
-    cities={cities}
+    {... baseData }
 
     initialState={{
       viewLevel: 'county',
@@ -51,8 +56,7 @@ export const CountyViewRosebud = () => {
 
 export const CityViewMissoula = () => {
   return <ThreeTierMap
-    nonprofits={nonprofits}
-    cities={cities}
+    {... baseData }
 
     initialState={{
       viewLevel: 'city',
@@ -63,8 +67,7 @@ export const CityViewMissoula = () => {
 
 export const CityViewHamilton = () => {
   return <ThreeTierMap
-    nonprofits={nonprofits}
-    cities={cities}
+    {... baseData }
 
     initialState={{
       viewLevel: 'city',
@@ -75,8 +78,7 @@ export const CityViewHamilton = () => {
 
 export const CityViewEkalaka = () => {
   return <ThreeTierMap
-    nonprofits={nonprofits}
-    cities={cities}
+    {... baseData }
 
     initialState={{
       viewLevel: 'city',
