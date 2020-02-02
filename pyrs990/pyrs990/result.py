@@ -3,10 +3,9 @@ from __future__ import annotations
 from typing import Any, Dict, Iterable, Iterator
 
 from .downloader import Downloader
-from .filing import Filing
+from .filing import Filing, FilingFilter
 from .index import Index
 from .querier import Querier
-from .types import FilterCallback
 
 
 class Result:
@@ -17,11 +16,20 @@ class Result:
     method. This will return a new, independent `Result` that will apply all
     filters already applied by the previous `Result`, plus the one that was
     provided to the method.
+
+    TODO: Enforce immutability assumption
+    Right now this type is designed to be immutable so that a given Result
+    always produces the same results and you can't accidentally change it
+    during iteration, for example. But indices are no longer immutable
+    because it was easier that way. However, we may need to go back to
+    immutable indices, or copy the data we need from the index when it is
+    used to create a Result so that the Result doesn't actually depend on
+    the actual Index instance.
     """
 
     _downloader: Downloader
 
-    _filters: Iterable[FilterCallback[Filing]]
+    _filters: Iterable[FilingFilter]
 
     _index: Index
 
@@ -29,7 +37,7 @@ class Result:
         self,
         downloader: Downloader,
         index: Index,
-        filters: Iterable[FilterCallback[Filing]] = (),
+        filters: Iterable[FilingFilter] = (),
     ):
         self._downloader = downloader
         self._filters = filters
@@ -37,8 +45,8 @@ class Result:
 
     def __iter__(self) -> Iterator[Filing]:
         for record in self._index:
-            xmlFile = self._downloader.fetch(record.object_id)
-            querier = Querier.from_file(xmlFile)
+            xml_file = self._downloader.fetch(record.annual_record.object_id)
+            querier = Querier.from_file(xml_file)
             filing = Filing(querier)
             passed = True
             for cb in self._filters:
@@ -48,7 +56,16 @@ class Result:
             if passed:
                 yield filing
 
-    def filter(self, cb: FilterCallback[Filing],) -> Result:
+    def download_count(self) -> int:
+        """
+        The number of filing documents that will be downloaded when this
+        Result object is iterated. This may be different from the number
+        of Filings actually produced upon iteration since some of them
+        may be filtered out here (which requires downloading them first).
+        """
+        return len(self._index)
+
+    def filter(self, cb: FilingFilter,) -> Result:
         """
         Apply a filter to the returned filings. Filings that don't pass the
         given function will not be yielded by the result.

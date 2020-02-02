@@ -1,10 +1,9 @@
 [[source]]
 name = "pypi"
-url = "https://pypi.org/simple"
+url = "https://pypi.org/pyrs990"
 verify_ssl = true
 
 [dev-packages]
-csvkit = "*"
 ipython = "*"
 pylint = "*"
 black = "*"
@@ -16,9 +15,6 @@ isort = "*"
 autoflake = "*"
 
 [packages]
-irsx = "*"
-pandas = "*"
-cssselect = "*"
 requests = "*"
 setuptools = "*"
 defusedxml = "*"
@@ -28,3 +24,4 @@ python_version = "3.8"
 
 [pipenv]
 allow_prereleases = true
+

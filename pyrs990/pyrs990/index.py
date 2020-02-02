@@ -1,180 +1,122 @@
 from __future__ import annotations
 
-import csv
 from logging import getLogger
-from typing import Iterable, Iterator, List, NamedTuple, TextIO
+from typing import Callable, Iterator, NamedTuple, Optional, Set, Union, cast
 
-from .downloader import Downloader
-from .types import FilterCallback
+from .annual_record import AnnualIndex, AnnualRecord
+from .bmf_record import BMFIndex, BMFRecord
+from .types import EIN
 
 _logger = getLogger(__name__)
 
 
 class IndexRecord(NamedTuple):
     """
-    A single index record that can be selected and used to fetch an XML
-    filing.
-
-    TODO: Audit the descriptions for correctness and completeness
+    A composite index record that holds an AnnualRecord and a BMFRecord
+    that both represent the same organization, as indicated by the EIN
+    field. In all cases the two records here should have the same `ein`
+    value.
     """
 
-    return_id: str
-    """Unique identifier for the tax filing."""
+    annual_record: AnnualRecord
+    bmf_record: BMFRecord
 
-    filing_type: str
-    """Type of filing, for example: 'EFILE'."""
 
-    ein: str
-    """Tax ID number of the organization."""
-
-    tax_period: str
-    """TODO: Find out what this is, exactly."""
-
-    sub_date: str
-    """Date the filing was submitted to the IRS."""
-
-    taxpayer_name: str
-    """Name of the organization that submitted the filing."""
-
-    return_type: str
-    """Type of form that was submitted, for example: '990'."""
-
-    dln: str
-    """TODO: Figure out what this is"""
-
-    object_id: str
-    """The unique identifier for this filing, used to download data."""
+IndexFilter = Callable[[IndexRecord], bool]
+"""
+A callback that can specify whether a given record should be kept
+as part of the collection of Filings produced by the index.
+"""
 
 
 class Index:
     """
-    Map from whatever properties or field matches (like name)
-    into an ID that can be used to download the XML file or
-    fetch it from the cache.
+    An Index provides a way to access a collection of filing documents that
+    have been filtered in a reasonably efficient manner using the various
+    fields in the annual and BMF (Business Master File) datasets.
 
-    The index won't change often so we don't need to generate
-    the fields.
+    Years (annual) and regions (BMF) can be added to the index to set its
+    initial pool of data. Filters, which further pare down the data actually
+    fetched, may also be added at-will.
 
-    Fields, see `RecordIndex` for details:
-
-      - RETURN_ID
-      - FILING_TYPE
-      - EIN
-      - TAX_PERIOD
-      - SUB_DATE
-      - TAXPAYER_NAME
-      - RETURN_TYPE
-      - DLN
-      - OBJECT_ID
-    
-    TODO: Implement true indices to improve lookup performance
-    TODO: Add some kind of query interface once we have real indices
-
-    >>> index = Index.from_file(open('fixtures/index.csv', 'r'))
-    >>> len(list(index._records))
-    5
-    >>> [r.return_id for r in index]
-    ['16285381', '16279505', '16279502', '16279501', '16279248']
+    Once the user wishes to fetch the collection of documents specified
+    by the applied filters, the Index may be iterated directly to access
+    each index record. The object ID necessary to fetch the document is
+    provided on the annual index. Additionally, the object_ids() method may
+    be used to access the object IDs directly.
     """
 
-    @staticmethod
-    def from_file(
-        index_file: TextIO, filters: Iterable[FilterCallback[IndexRecord]] = (),
-    ) -> Index:
-        records = Index.records_from_file(index_file)
-        return Index(records, filters)
+    _annual_indices: Set[AnnualIndex] = set()
 
-    @staticmethod
-    def from_years(
-        years: Iterable[str],
-        index_downloader: Downloader,
-        filters: Iterable[FilterCallback[IndexRecord]] = (),
-    ) -> Index:
-        records: List[IndexRecord] = []
-        for index_file in index_downloader.fetch_all(years):
-            records.extend(Index.records_from_file(index_file))
-        return Index(records, filters)
+    _bmf_indices: Set[BMFIndex] = set()
 
-    @staticmethod
-    def records_from_file(index_file: TextIO) -> Iterable[IndexRecord]:
-        records: List[IndexRecord] = []
-        for row in csv.DictReader(index_file):
-            try:
-                record = IndexRecord(
-                    return_id=row["RETURN_ID"],
-                    filing_type=row["FILING_TYPE"],
-                    ein=row["EIN"],
-                    tax_period=row["TAX_PERIOD"],
-                    sub_date=row["SUB_DATE"],
-                    taxpayer_name=row["TAXPAYER_NAME"],
-                    return_type=row["RETURN_TYPE"],
-                    dln=row["DLN"],
-                    object_id=row["OBJECT_ID"],
-                )
-                records.append(record)
-            except KeyError as e:
-                _logger.error(f"malformed index row - '{e}' - '{row}'")
-                raise
+    _filters: Set[IndexFilter] = set()
 
-        return records
-
-    _filters: Iterable[FilterCallback[IndexRecord]]
-
-    _records: Iterable[IndexRecord]
-
-    def __init__(
-        self,
-        records: Iterable[IndexRecord],
-        filters: Iterable[FilterCallback[IndexRecord]] = (),
-    ):
-        self._filters = filters
-        self._records = records
+    _length: Optional[int] = None
 
     def __iter__(self) -> Iterator[IndexRecord]:
-        for record in self._records:
-            passed = True
-            for cb in self._filters:
-                if not cb(record):
-                    passed = False
-                    break
-            if passed:
-                yield record
+        # TODO: Be smarter about which one to iterate first based on filters
+        # TODO: Consider whether re-instantiating all these tuples is too slow
+        for annual_index in self._annual_indices:
+            for bmf_index in self._bmf_indices:
+                for annual_record in annual_index.values():
+                    ein = EIN(annual_record.ein)
+                    bmf_record = bmf_index[ein]
 
-    def augment(self, other: Iterable[IndexRecord]) -> Index:
-        return AugmentedIndex(self, other)
+                    index_record = IndexRecord(annual_record, bmf_record)
+                    passed = True
+                    for cb in self._filters:
+                        if not cb(index_record):
+                            passed = False
+                            break
 
-    def filter(self, cb: FilterCallback[IndexRecord]) -> Index:
-        return FilteredIndex(self, cb)
+                    if passed:
+                        yield index_record
 
+    def __len__(self) -> int:
+        if self._length is not None:
+            return self._length
 
-class AugmentedIndex(Index):
-    """
-    An `Index` that can combine the records from several different indices
-    into one logical index.
+        # TODO: This is stupid, don't instantiate the tuples, just count
+        length = 0
+        for _ in self:
+            length += 1
 
-    TODO: Just hold the iterables and iterate them sequentially
-    """
+        self._length = length
+        return self._length
 
-    def __init__(self, original: Index, others: Iterable[IndexRecord]):
-        records = list(original._records) + list(others)
-        super().__init__(records)
+    def add_annual_index(self, annual_index: AnnualIndex) -> None:
+        if annual_index not in self._annual_indices:
+            self._length = None
+            self._annual_indices.add(annual_index)
 
+    def add_bmf_index(self, bmf_index: BMFIndex) -> None:
+        if bmf_index not in self._bmf_indices:
+            self._length = None
+            self._bmf_indices.add(bmf_index)
 
-class FilteredIndex(Index):
-    """
-    An `Index` that can be created from a parent and filter rather than a
-    file and collection of filters. This is what is actually returned from
-    the `filter()` method.
-    """
+    def add_filter(self, cb: IndexFilter) -> None:
+        if cb not in self._filters:
+            self._length = None
+            self._filters.add(cb)
 
-    def __init__(
-        self, parent: Index, cb: FilterCallback[IndexRecord],
-    ):
-        filters = list(parent._filters) + [cb]
+    def object_ids(self) -> Iterator[str]:
+        """
+        Iterate over the object IDs that correspond to the filing documents
+        reflected by this Index.
+        """
+        for record in self:
+            yield record.annual_record.object_id
 
-        # We share the list of records since it could be quite large. This
-        # shouldn't prevent concurrent iteration since we ultimately delegate
-        # to the list's iterator.
-        records = parent._records
+    def remove_filter(self, cb: IndexFilter) -> None:
+        if cb in self._filters:
+            self._length = None
+            self._filters.remove(cb)
 
-        super().__init__(records, filters)
+    def remove_index(self, index: Union[AnnualIndex, BMFIndex]) -> None:
+        if index in self._annual_indices:
+            self._length = None
+            self._annual_indices.remove(cast(AnnualIndex, index))
+        if index in self._bmf_indices:
+            self._length = None
+            self._bmf_indices.remove(cast(BMFIndex, index))

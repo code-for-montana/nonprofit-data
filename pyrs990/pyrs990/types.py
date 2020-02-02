@@ -1,11 +1,8 @@
-from typing import Callable, TypeVar
+from typing import NewType
 
-FilterT = TypeVar("FilterT")
-
-
-FilterCallback = Callable[[FilterT], bool]
+EIN = NewType("EIN", str)
 """
-A callback used to filter collections of data. Takes a thing and returns a
-boolean that indicates whether the thing should be retained (`True`) or
-dropped (`False`).
+An EIN is a tax identification number assigned to a particular
+organization. In our case, it is used to join the Annual and BMF
+indices.
 """

@@ -2,7 +2,8 @@
 
 It's a pun. Get it?
 
-A Python application that grabs the data necessary to create the web site.
+A Python application that can grab all sorts of IRS Form 990 data on non-profit organizations and
+put it into a format that can be consumed easily.
 
 ## Running
 

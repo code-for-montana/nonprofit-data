@@ -133,3 +133,6 @@ class Filing:
 
     def to_json(self) -> Dict[str, Any]:
         return asdict(self)
+
+
+FilingFilter = Callable[[Filing], bool]

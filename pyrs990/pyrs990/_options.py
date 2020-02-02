@@ -47,10 +47,24 @@ parser.add_argument(
 )
 
 parser.add_argument(
+    "--dry-run",
+    action="store_true",
+    default=False,
+    help="Just report how many documents would be downloaded",
+)
+
+parser.add_argument(
     "--load-filters",
     action="append",
     type=str,
     help="Read filters from a JSON file",
+)
+
+parser.add_argument(
+    "--no-confirm",
+    action="store_true",
+    default=False,
+    help="Do not interactively confirm large downloads, for shell scripts",
 )
 
 parser.add_argument(
@@ -177,20 +191,26 @@ class Options(NamedTuple):
             years.append(year_str)
 
         return Options(
+            dry_run=args.dry_run,
             formatter=formatter,
             filing_cache=filing_cache,
             index_cache=index_cache,
+            no_confirm=args.no_confirm,
             filing_filters=filing_filters,
             index_filters=index_filters,
             to_json=args.to_json,
             years=years,
         )
 
+    dry_run: bool
+
     formatter: Formatter
 
     filing_cache: Cache
 
     index_cache: Cache
+
+    no_confirm: bool
 
     years: Iterable[str]
 
