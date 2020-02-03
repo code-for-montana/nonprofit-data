@@ -67,23 +67,10 @@ setup(
     # do not support Python 2, you can simplify this to '>=3.5' or similar, see
     # https://packaging.python.org/guides/distributing-packages-using-setuptools/#python-requires
     python_requires=">=3.8, <4",
-    install_requires=[
-        "defusedxml",
-        "requests",
-    ],
+    install_requires=["defusedxml", "requests",],
     extras_require={
-        "dev": [
-            "autoflake",
-            "black",
-            "isort",
-            "mypy",
-            "pipenv",
-            "pytest",
-        ],
-        "test": [
-            "pipenv",
-            "pytest",
-        ],
+        "dev": ["autoflake", "black", "isort", "mypy", "pipenv", "pytest",],
+        "test": ["pipenv", "pytest",],
     },
     # If there are data files included in your packages that need to be
     # installed, specify them here.
@@ -104,14 +91,9 @@ setup(
     #
     # For example, the following would provide a command called `sample` which
     # executes the function `main` from this package when invoked:
-    entry_points={
-        "console_scripts": [
-            "pyrs990=pyrs990.__main__:main",
-        ],
-    },
+    entry_points={"console_scripts": ["pyrs990=pyrs990.__main__:main",],},
     project_urls={
         "Bug Reports": "https://github.com/code-for-montana/nonprofit-data/issues",
         "Source": "https://github.com/code-for-montana/nonprofit-data",
     },
 )
-

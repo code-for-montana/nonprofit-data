@@ -73,8 +73,10 @@ class HTTPDownloader(Downloader):
         self._url_template = url_template
 
     def fetch(self, document: str,) -> TextIO:
+        _logger.info(f"fetching document '{document}'")
         content = self._cache.get(document)
         if content is None:
+            _logger.info("cache miss")
             url = self._url_template.format(document=document)
             _logger.info(f"downloading '{url}'")
             response = requests.get(url)
@@ -91,6 +93,9 @@ class HTTPDownloader(Downloader):
                 raise DownloaderException(response.text)
 
             content = self._cache.put(document, response.text)
+        else:
+            _logger.info("cache hit")
+
         return StringIO(content)
 
     def fetch_all(self, documents: Iterable[str],) -> Iterable[TextIO]:

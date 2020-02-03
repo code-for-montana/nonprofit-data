@@ -4,6 +4,7 @@ import dataclasses as dc
 import json
 from argparse import ArgumentParser, Namespace
 from datetime import datetime
+from logging import getLogger
 from typing import Any, Dict, Iterable, List, Mapping, NamedTuple
 
 from .cache import Cache, DirectoryCache, MemoryCache
@@ -22,6 +23,9 @@ from .formatter import (
 )
 from .index import IndexRecord
 
+_logger = getLogger(__name__)
+
+
 parser = ArgumentParser(
     prog=PROGRAM_NAME,
     description=PROGRAM_DESCRIPTION,
@@ -33,7 +37,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--cache-to-disk",
+    "--use-disk-cache",
     action="store_true",
     default=False,
     help="Cache index and filing documents to disk",
@@ -58,6 +62,13 @@ parser.add_argument(
     action="append",
     type=str,
     help="Read filters from a JSON file",
+)
+
+parser.add_argument(
+    "--verbose-logging",
+    action="store_true",
+    default=False,
+    help="Provide much more verbose logging output, useful for debugging",
 )
 
 parser.add_argument(
@@ -104,22 +115,23 @@ parser.add_argument(
 # Index record filters #
 # -------------------- #
 
-for indexFieldName in IndexRecord._fields:
+for index_filter_field_name in IndexRecord.field_names():
     parser.add_argument(
-        f"--{indexFieldName}",
+        f"--{index_filter_field_name}",
         type=str,
-        help=f"Apply a filter to the {indexFieldName} index field",
+        help=f"Apply a filter to the {index_filter_field_name} index field",
     )
 
 # -------------- #
 # Filing filters #
 # -------------- #
 
-for filingField in dc.fields(Filing):
+for filing_filter_field_name in dc.fields(Filing):
+    name = filing_filter_field_name.name
     parser.add_argument(
-        f"--{filingField.name}",
+        f"--{filing_filter_field_name.name}",
         type=str,
-        help=f"Apply a filter to the {filingField.name} filing field",
+        help=f"Apply a filter to the {name} filing field",
     )
 
 
@@ -132,7 +144,7 @@ class Options(NamedTuple):
 
         index_cache: Cache
         filing_cache: Cache
-        if args.cache_to_disk:
+        if args.use_disk_cache:
             index_cache = DirectoryCache(".csv", args.cache_path)
             filing_cache = DirectoryCache(".xml", args.cache_path)
         else:
@@ -141,20 +153,22 @@ class Options(NamedTuple):
 
         # Gather all the index filters
         index_filters: Dict[str, str] = {}
-        for index_field_name in IndexRecord._fields:
+        for index_field_name in IndexRecord.field_names():
             if hasattr(args, index_field_name):
                 value = getattr(args, index_field_name)
                 if value is not None:
                     index_filters[index_field_name] = value
+        _logger.info(f"extracted index filters: {index_filters}")
 
         # Gather all the filing filters
         filing_filters: Dict[str, str] = {}
-        for filing_field in dc.fields(Filing):
-            name = filing_field.name
+        for filing_field_name in dc.fields(Filing):
+            name = filing_field_name.name
             if hasattr(args, name):
                 value = getattr(args, name)
                 if value is not None:
                     filing_filters[name] = value
+        _logger.info(f"extracted filing filters: {filing_filters}")
 
         # Check for JSON files specifying filters
         if args.load_filters is not None:
@@ -200,6 +214,7 @@ class Options(NamedTuple):
             index_filters=index_filters,
             to_json=args.to_json,
             years=years,
+            verbose_logging=args.verbose_logging,
         )
 
     dry_run: bool
@@ -219,3 +234,5 @@ class Options(NamedTuple):
     index_filters: Mapping[str, str] = {}
 
     to_json: bool = False
+
+    verbose_logging: bool = False

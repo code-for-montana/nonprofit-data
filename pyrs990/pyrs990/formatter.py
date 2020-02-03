@@ -141,6 +141,7 @@ class FileFormatter(Formatter):
         self._file.write(
             f"Principal Officer Name: {filing.principal_officer_name}\n"
         )
+        self._file.write(f"Website Address:        {filing.website_address}\n")
 
     def epilogue(self) -> None:
         if self._file is None:

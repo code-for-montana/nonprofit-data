@@ -36,9 +36,9 @@ def filter_index_record(filters: Mapping[str, str],) -> IndexFilter:
         passed = True
         for field_name in filters:
             filter_text = filters[field_name]
-            if not hasattr(record, field_name):
+            if not record.has_field(field_name):
                 raise FieldNotFound(field_name)
-            value = getattr(record, field_name)
+            value = record.get_field(field_name)
             if value is None:
                 return False
             match = re.match(filter_text, str(value))

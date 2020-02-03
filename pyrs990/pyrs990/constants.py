@@ -25,7 +25,9 @@ the IRS web site. This provides us with location data without
 having to download every single filing.
 """
 
-PROGRAM_DESCRIPTION = "A utility to extract and serialize IRS Form 990 " +\
-                      "data on non-profit organizations."
+PROGRAM_DESCRIPTION = (
+    "A utility to extract and serialize IRS Form 990 "
+    + "data on non-profit organizations."
+)
 
 PROGRAM_NAME = "pyrs990"

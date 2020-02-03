@@ -56,6 +56,15 @@ class Result:
             if passed:
                 yield filing
 
+    def add_filter(self, cb: FilingFilter,) -> Result:
+        """
+        Apply a filter to the returned filings. Filings that don't pass the
+        given function will not be yielded by the result.
+        """
+        return Result(
+            self._downloader, self._index, list(self._filters) + [cb],
+        )
+
     def download_count(self) -> int:
         """
         The number of filing documents that will be downloaded when this
@@ -64,15 +73,6 @@ class Result:
         may be filtered out here (which requires downloading them first).
         """
         return len(self._index)
-
-    def filter(self, cb: FilingFilter,) -> Result:
-        """
-        Apply a filter to the returned filings. Filings that don't pass the
-        given function will not be yielded by the result.
-        """
-        return Result(
-            self._downloader, self._index, list(self._filters) + [cb],
-        )
 
     def skip(self, n: int) -> Result:
         """
