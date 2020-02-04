@@ -4,7 +4,6 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-csvkit = "*"
 ipython = "*"
 pylint = "*"
 black = "*"
@@ -16,9 +15,6 @@ isort = "*"
 autoflake = "*"
 
 [packages]
-irsx = "*"
-pandas = "*"
-cssselect = "*"
 requests = "*"
 setuptools = "*"
 defusedxml = "*"

@@ -1,6 +1,6 @@
 import logging
 from io import StringIO
-from typing import Iterable, TextIO
+from typing import Dict, Iterable, TextIO
 
 import requests
 
@@ -23,6 +23,25 @@ class Downloader:
 
     def fetch_all(self, documents: Iterable[str],) -> Iterable[TextIO]:
         raise NotImplementedError()
+
+
+class FakeDownloader(Downloader):
+    """
+    A fake for testing pieces of the package that rely on a Downloader
+    implementation. Give it a dictionary of document keys (strings)
+    and document contents (file-like objects) and it does the rest.
+    """
+
+    _documents: Dict[str, TextIO]
+
+    def __init__(self, documents: Dict[str, TextIO]):
+        self._documents = documents
+
+    def fetch(self, document: str,) -> TextIO:
+        return self._documents[document]
+
+    def fetch_all(self, documents: Iterable[str],) -> Iterable[TextIO]:
+        return [self.fetch(d) for d in documents]
 
 
 class HTTPDownloader(Downloader):
@@ -54,8 +73,10 @@ class HTTPDownloader(Downloader):
         self._url_template = url_template
 
     def fetch(self, document: str,) -> TextIO:
+        _logger.info(f"fetching document '{document}'")
         content = self._cache.get(document)
         if content is None:
+            _logger.info("cache miss")
             url = self._url_template.format(document=document)
             _logger.info(f"downloading '{url}'")
             response = requests.get(url)
@@ -72,6 +93,9 @@ class HTTPDownloader(Downloader):
                 raise DownloaderException(response.text)
 
             content = self._cache.put(document, response.text)
+        else:
+            _logger.info("cache hit")
+
         return StringIO(content)
 
     def fetch_all(self, documents: Iterable[str],) -> Iterable[TextIO]:

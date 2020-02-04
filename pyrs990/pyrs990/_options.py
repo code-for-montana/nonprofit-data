@@ -4,6 +4,7 @@ import dataclasses as dc
 import json
 from argparse import ArgumentParser, Namespace
 from datetime import datetime
+from logging import getLogger
 from typing import Any, Dict, Iterable, List, Mapping, NamedTuple
 
 from .cache import Cache, DirectoryCache, MemoryCache
@@ -22,6 +23,9 @@ from .formatter import (
 )
 from .index import IndexRecord
 
+_logger = getLogger(__name__)
+
+
 parser = ArgumentParser(
     prog=PROGRAM_NAME,
     description=PROGRAM_DESCRIPTION,
@@ -33,92 +37,120 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--cache-to-disk",
+    "--use-disk-cache",
     action="store_true",
     default=False,
-    help="Cache index and filing documents to disk",
+    help="cache index and filing documents to disk",
 )
 
 parser.add_argument(
     "--cache-path",
     type=str,
     default=DEFAULT_CACHE_PATH,
-    help="Path to use for reading and writing cache data",
+    help="path to use for reading and writing cache data",
+)
+
+parser.add_argument(
+    "--dry-run",
+    action="store_true",
+    default=False,
+    help="report how many documents would be "
+         + "downloaded / process and nothing else",
 )
 
 parser.add_argument(
     "--load-filters",
     action="append",
     type=str,
-    help="Read filters from a JSON file",
+    help="read filters from a JSON file",
 )
 
 parser.add_argument(
-    "--save-filters", type=str, help="Save the filters applied to a JSON file",
-)
-
-parser.add_argument(
-    "--to-json",
+    "--verbose-logging",
     action="store_true",
     default=False,
-    help="Output extracted data to JSON, equivalent to --formatter=json",
+    help="provide much more verbose logging output, useful for debugging",
 )
+
+parser.add_argument(
+    "--no-confirm",
+    action="store_true",
+    default=False,
+    help="do not interactively confirm large downloads, for shell scripts",
+)
+
+parser.add_argument(
+    "--save-filters", type=str, help="save the filters applied to a JSON file",
+)
+
+if "json" in registered_formatters():
+    parser.add_argument(
+        "--to-json",
+        action="store_true",
+        default=False,
+        help="output extracted data to JSON, equivalent to --formatter=json",
+    )
 
 parser.add_argument(
     "--formatter",
     type=str,
     choices=registered_formatters(),
-    default="file",
-    help="Output formatter, use --destination to specify file name",
+    default=registered_formatters()[0],
+    help="output formatter, use --destination to specify file name",
 )
 
 parser.add_argument(
     "--destination",
     type=str,
     default=":stdout:",
-    help="File to which output should be written (or ':stdout:', ':stderr:')",
+    help="file to which output should be written (or ':stdout:', ':stderr:')",
 )
 
 parser.add_argument(
     "--years",
     type=str,
     default=":current:",
-    help="Years to search, comma-separated (':current:' is the current year)",
+    help="years to search, comma-separated "
+         + "(':current:' is the most recent completed year)",
 )
 
 # -------------------- #
 # Index record filters #
 # -------------------- #
 
-for indexFieldName in IndexRecord._fields:
+for index_filter_field_name in IndexRecord.field_names():
     parser.add_argument(
-        f"--{indexFieldName}",
+        f"--{index_filter_field_name}",
         type=str,
-        help=f"Apply a filter to the {indexFieldName} index field",
+        help=f"apply a filter to the {index_filter_field_name} index field",
     )
 
 # -------------- #
 # Filing filters #
 # -------------- #
 
-for filingField in dc.fields(Filing):
+for filing_filter_field_name in dc.fields(Filing):
+    name = filing_filter_field_name.name
     parser.add_argument(
-        f"--{filingField.name}",
+        f"--{filing_filter_field_name.name}",
         type=str,
-        help=f"Apply a filter to the {filingField.name} filing field",
+        help=f"apply a filter to the {name} filing field",
     )
 
 
 class Options(NamedTuple):
     @staticmethod
     def from_args(args: Namespace) -> Options:
-        formatter = get_formatter(args.formatter, args.destination)
+        if hasattr(args, "to_json") and args.to_json:
+            formatter = get_formatter("json", args.destination)
+        else:
+            formatter = get_formatter(args.formatter, args.destination)
         if formatter is None:
             formatter = FileFormatter(args.destination)
 
         index_cache: Cache
         filing_cache: Cache
-        if args.cache_to_disk:
+        if args.use_disk_cache:
             index_cache = DirectoryCache(".csv", args.cache_path)
             filing_cache = DirectoryCache(".xml", args.cache_path)
         else:
@@ -127,20 +159,22 @@ class Options(NamedTuple):
 
         # Gather all the index filters
         index_filters: Dict[str, str] = {}
-        for index_field_name in IndexRecord._fields:
+        for index_field_name in IndexRecord.field_names():
             if hasattr(args, index_field_name):
                 value = getattr(args, index_field_name)
                 if value is not None:
                     index_filters[index_field_name] = value
+        _logger.info(f"extracted index filters: {index_filters}")
 
         # Gather all the filing filters
         filing_filters: Dict[str, str] = {}
-        for filing_field in dc.fields(Filing):
-            name = filing_field.name
+        for filing_field_name in dc.fields(Filing):
+            name = filing_field_name.name
             if hasattr(args, name):
                 value = getattr(args, name)
                 if value is not None:
                     filing_filters[name] = value
+        _logger.info(f"extracted filing filters: {filing_filters}")
 
         # Check for JSON files specifying filters
         if args.load_filters is not None:
@@ -172,25 +206,37 @@ class Options(NamedTuple):
         years_str = args.years.split(",")
         for year_str in years_str:
             if year_str == ":current:":
-                years.append(str(datetime.today().year))
+                # We use last year since it is most likely to have
+                # complete, or at least reasonably complete, data.
+                # The other problem is that the current year probably
+                # doesn't even exist until a couple months into the
+                # year so the user would get mysterious 404s.
+                years.append(str(datetime.today().year - 1))
                 continue
             years.append(year_str)
 
         return Options(
+            dry_run=args.dry_run,
             formatter=formatter,
             filing_cache=filing_cache,
             index_cache=index_cache,
+            no_confirm=args.no_confirm,
             filing_filters=filing_filters,
             index_filters=index_filters,
             to_json=args.to_json,
             years=years,
+            verbose_logging=args.verbose_logging,
         )
+
+    dry_run: bool
 
     formatter: Formatter
 
     filing_cache: Cache
 
     index_cache: Cache
+
+    no_confirm: bool
 
     years: Iterable[str]
 
@@ -199,3 +245,5 @@ class Options(NamedTuple):
     index_filters: Mapping[str, str] = {}
 
     to_json: bool = False
+
+    verbose_logging: bool = False

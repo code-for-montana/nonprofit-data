@@ -74,7 +74,7 @@ class Filing:
     TODO: Explain how to add a new field
     TODO: Consider making this "frozen", see Python docs for implications
 
-    >>> from pyrs990 import Querier
+    >>> from pyrs990.querier import Querier
     >>> q = Querier.from_path("fixtures/filing.xml")
     >>> f = Filing(q)
     >>> f.formation_year
@@ -133,3 +133,6 @@ class Filing:
 
     def to_json(self) -> Dict[str, Any]:
         return asdict(self)
+
+
+FilingFilter = Callable[[Filing], bool]
