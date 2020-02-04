@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import csv
 import json
 import sys
-from typing import Callable, Dict, Iterable, Optional, TextIO, Type
+from typing import Callable, Dict, Iterable, Optional, TextIO, Type, List, \
+    Protocol, Any
 
 from .filing import Filing
 
@@ -35,11 +37,11 @@ def register(name: str, factory: Callable[[str], Formatter]) -> None:
     _formatters[name] = factory
 
 
-def registered_formatters() -> Iterable[str]:
+def registered_formatters() -> List[str]:
     """
     Return the names of all registered formatters.
     """
-    return _formatters.keys()
+    return list(_formatters.keys())
 
 
 class Formatter:
@@ -128,7 +130,7 @@ class FileFormatter(Formatter):
 
     def write(self, filing: Filing) -> None:
         if self._file is None:
-            return
+            raise FormatterException("must call prologue() before write()")
 
         if self._has_written:
             self._file.write("\n")
@@ -145,7 +147,7 @@ class FileFormatter(Formatter):
 
     def epilogue(self) -> None:
         if self._file is None:
-            return
+            raise FormatterException("must call prologue() before epilogue()")
 
         if self._path != ":stdout:" and self._path != ":stderr:":
             self._file.close()
@@ -190,7 +192,7 @@ class JSONFormatter(Formatter):
 
     def write(self, filing: Filing) -> None:
         if self._file is None:
-            return
+            raise FormatterException("must call prologue() before write()")
 
         if self._has_written:
             self._file.write(",")
@@ -201,7 +203,7 @@ class JSONFormatter(Formatter):
 
     def epilogue(self) -> None:
         if self._file is None:
-            return
+            raise FormatterException("must call prologue() before epilogue()")
 
         self._file.write("]}\n")
 
@@ -209,3 +211,65 @@ class JSONFormatter(Formatter):
             self._file.close()
 
         self._file = None
+
+
+class CSVWriterProtocol(Protocol):
+    """
+    A helper to let us type annotate the CSVFormatter.
+    """
+    def writerow(self, row: Iterable[Any]) -> None:
+        ...
+
+
+@register_formatter("csv")
+class CSVFormatter(Formatter):
+    """
+    A Formatter implementation that creates CSV-formatted files.
+    """
+
+    _file: Optional[TextIO] = None
+
+    _has_written: bool = False
+
+    _path: str
+
+    _writer: Optional[CSVWriterProtocol] = None
+
+    def __init__(self, destination: str):
+        self._path = destination
+
+    def prologue(self) -> None:
+        if self._file is not None:
+            return
+
+        if self._path == ":stdout:":
+            self._file = sys.stdout
+        elif self._path == ":stderr:":
+            self._file = sys.stderr
+        else:
+            self._file = open(self._path, "w")
+
+        self._writer = csv.writer(self._file)
+
+        # TODO: Write column headers? How do we choose?
+
+    def write(self, filing: Filing) -> None:
+        if self._file is None:
+            return
+
+        if self._has_written:
+            self._file.write(",")
+        else:
+            self._has_written = True
+
+        # TODO: Write data from filing, choosing the same fields as prologue
+
+    def epilogue(self) -> None:
+        if self._file is None:
+            return
+
+        if self._path not in (":stdout:", ":stderr:"):
+            self._file.close()
+
+        self._file = None
+        self._writer = None
