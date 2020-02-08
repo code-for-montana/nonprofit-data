@@ -57,7 +57,12 @@ const defaultShapeStyle = {
 const defaultFeatureStyler = (d => ({}))
 export const MapShapeLayer = (props) => {
     // returns svg group with shape features
-    const { projection, shapeFeatures, featureStyler=defaultFeatureStyler } = props
+    const {
+        projection,
+        shapeFeatures,
+        featureStyler=defaultFeatureStyler,
+        onFeatureClick=(d => null)
+    } = props
     // shapeFeatures is array of geojson polygon features
     // featureStyler is function of feature data returning object with fill/stroke/etc.
 
@@ -74,7 +79,12 @@ export const MapShapeLayer = (props) => {
             key={String(i)}
             className='map-shape'
             d={makeSVGPath(feature)}
+            
+            // styling
             {...style}
+
+            // interactivity - pass feature data up to handler function
+            onClick={e => onFeatureClick(feature.properties)}
         />
     })
 
@@ -101,20 +111,27 @@ const defaultMarker = (d) => {
 }
 export const MapPointLayer = (props) => {
     // returns svg group with point features
-    const {projection, pointFeatures, markerGenerator=defaultMarker} = props
+    const {
+        projection,
+        pointFeatures,
+        markerGenerator=defaultMarker,
+        // interactivity
+        onFeatureClick=(d => null)
+    } = props
     // pointFeatures is array of geojson MultiPoint features
     // See logic/convertFlatDataToGeojson for converting "flat" jsons
     // markerGenerator is jsx function of feature data returning svg marker
 
     const makeSVGPath = geoPath().projection(projection);
 
-    const markers = pointFeatures.map((d, i) => {
+    const markers = pointFeatures.map((feature, i) => {
         // const point = projection([d.longitude, d.latitude])
-        const centroid = makeSVGPath.centroid(d)
+        const centroid = makeSVGPath.centroid(feature)
         return <g className={`marker-container`} key={String(i)}
             transform={`translate(${centroid[0]},${centroid[1]})`}
+            onClick={d => onFeatureClick(feature.properties)}
         >
-            {markerGenerator(d)}
+            {markerGenerator(feature)}
         </g>
     })
 

@@ -31,6 +31,27 @@ export default class ThreeTierMap extends Component {
         this.state = {
             ...initialState
         }
+        this.resetView = this.resetView.bind(this)
+        this.zoomToCounty = this.zoomToCounty.bind(this)
+        this.zoomToCity = this.zoomToCity.bind(this)
+    }
+
+    resetView() {
+        this.setState(defaultState)
+    }
+
+    zoomToCounty(d) {
+        this.setState({
+            viewLevel: 'county',
+            focusGeographyKey: d.name
+        })
+    }
+
+    zoomToCity(d) {
+        this.setState({
+            viewLevel: 'city',
+            focusGeographyKey: d.city
+        })
     }
 
     render() {
@@ -40,36 +61,47 @@ export default class ThreeTierMap extends Component {
         // Does this sort of state validation logic belong here?
         const cityNames = cities.features.map(d => d.properties.city)
         const countyNames = Array.from(new Set(cities.features.map(d => d.properties.county)))
+
+        let view;
         
         if (viewLevel === 'state') {
-            return <StateTierMap
+            view = <StateTierMap
                 nonprofits={nonprofits}
                 counties={counties}
                 cities={cities}
-                // onFeatureClick={e => console.log(e)} // handle click on specific county
+                zoomToCounty={this.zoomToCounty} // handle click on specific county
             />
         } else if (viewLevel === 'county' && countyNames.includes(focusGeographyKey)) {
-            return <CountyTierMap
+            view = <CountyTierMap
                 nonprofits={getNonprofitsInCounty(nonprofits, cities, focusGeographyKey)}
                 counties={counties}
                 cities={cities}
                 county={focusGeographyKey}
-                />
+                zoomToCounty={this.zoomToCounty} // handle click on specific county
+                zoomToCity={this.zoomToCity} // handle click on specific city
+            />
         } else if (viewLevel === 'city' && cityNames.includes(focusGeographyKey)) {
-            return <CityTierMap
+            view = <CityTierMap
                 nonprofits={getNonprofitsInCity(nonprofits, cities, focusGeographyKey)}
                 city={focusGeographyKey}
-                />
+            />
         } else {
-            return <div>Map state error: {viewLevel}, {focusGeographyKey}</div>
+            view = <div>Map state error: {viewLevel}, {focusGeographyKey}</div>
         }
+
+        return <div>
+            <button onClick={this.resetView}>Reset View</button>
+            <div>TODO search select -- Zoom to county</div>
+            <div>TODO search select -- Zoom to city</div>
+            {view}
+        </div>
     }
 }
 
 const rScaleState = scaleRadial().domain([0,200]).range([0,20])
 const markNumberOfNonprofitsState = (d) => {
     return <circle cx={0} cy={0}
-        onClick={e => console.log(d.properties)}
+        // onClick={e => console.log(d.properties)}
         fill="#377eb8"
         fillOpacity={0.8}
         stroke="#377eb8"
@@ -82,24 +114,20 @@ export const StateTierMap = (props) => {
         nonprofits,
         counties,
         cities,
-        onFeatureClick
-    } = props  
-    // const citiesWithNonprofitCounts = mergeInNonprofitsByCity(counties, nonprofits)  
+        zoomToCounty
+    } = props
     const countiesWithNonprofitCounts = mergeInNonprofitsByCounty(counties, nonprofits, cities)    
     return <div>
-        <div>State map view, {nonprofits.length} nonprofits</div>
+        <h3>State map view, {nonprofits.length} nonprofits</h3>
         <Map>
             <MapShapeLayer
                 shapeFeatures={counties.features}
-                // onFeatureClick=
+                onFeatureClick={zoomToCounty}
             />
             <MapPointLayer
                 pointFeatures={countiesWithNonprofitCounts.features}
                 markerGenerator={markNumberOfNonprofitsState}
             />
-            {/* <MapPointLayer pointFeatures={cities.features} /> */}
-            {/* TODO: Parse geodata to get centroids for adding nonprofit counts by county here */}
-            {/* <MapPointLayer pointFeatures={mtCities} /> */}
         </Map>
     </div>
 }
@@ -112,7 +140,7 @@ const highlightCountyStyle = d => ({
 const rScaleCounty = scaleRadial().domain([0,200]).range([0,40])
 const markNumberOfNonprofitsCounty = (d) => {
     return <circle cx={0} cy={0}
-        onClick={e => console.log(d.properties)}
+        // onClick={e => console.log(d.properties)}
         fill="#377eb8"
         fillOpacity={0.8}
         stroke="#377eb8"
@@ -121,7 +149,14 @@ const markNumberOfNonprofitsCounty = (d) => {
     />
 }
 export const CountyTierMap = (props) => {
-    const {nonprofits, county, counties, cities} = props
+    const {
+        nonprofits,
+        county,
+        counties,
+        cities,
+        zoomToCounty,
+        zoomToCity,
+    } = props
     
     // Get Geojson structured object with just focus county
     // Lets us tell map to zoom to that county
@@ -132,18 +167,24 @@ export const CountyTierMap = (props) => {
     const citiesInCounty = getCitiesInCountyAsGeoJson(cities, county)
     const citiesWithNonprofitCounts = mergeInNonprofitsByCity(citiesInCounty, nonprofits)
 
-    // const citiesWithNonprofitCounts = countNonprofitsByCity(cities)
     return <div>
-        <div>County map view, {county}, {nonprofits.length} nonprofits</div>
+        <h3>County map view, {county}, {nonprofits.length} nonprofits</h3>
         <Map scopeLayer={currentCountyGeojson}>
-            <MapShapeLayer shapeFeatures={counties.features} />
+            {/* Base layer */}
+            <MapShapeLayer
+                shapeFeatures={counties.features}
+                onFeatureClick={zoomToCounty}
+            />
+            {/* Selected county */}
             <MapShapeLayer
                 shapeFeatures={currentCountyGeojson.features}
                 featureStyler={highlightCountyStyle}
             />
+            {/* City points */}
             <MapPointLayer
                 pointFeatures={citiesWithNonprofitCounts.features}
                 markerGenerator={markNumberOfNonprofitsCounty}
+                onFeatureClick={zoomToCity}
             />
         </Map>
     </div>
@@ -151,9 +192,10 @@ export const CountyTierMap = (props) => {
 
 export const CityTierMap = (props) => {
     const {nonprofits, city} = props
-    console.log(nonprofits)
     return <div>
-        <div>City/town map view, {city}, {nonprofits.length} nonprofits</div>
+        <h3>City/town map view, {city}, {nonprofits.length} nonprofits</h3>
+        <div>TODO: Button move up to county</div>
+        <div>TODO: Button look at other cities in county</div>
         <Chart width={600} height={400}>
         <BubbleChartLayer
             data={nonprofits}
@@ -166,27 +208,3 @@ export const CityTierMap = (props) => {
     </Chart>
     </div>
 }
-
-/* Three tiers
-
-Necessary data:
-- Nonprofit data (don't currently have easy categories)
-- County boundary data as appropriate-resolution GeoJson
-- File w/ Lat/lng point for each city/town/place in nonprofit address data, also county of place via zip
-    - Develop from zip codes --> group by zips w/ same place and average lat/longs
-
-# State view
-- Plot all counties as svg
-- Circle w/ number
-
-# County view
-- Show boundary of selected county
-- Show faintly other counties in frame
-- Circles at 
-
-# City view
-- Show all nonprofits in city as bubble plot
-- Color by category?
-- Tooltips
-
-*/
