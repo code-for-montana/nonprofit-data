@@ -25,6 +25,13 @@ export function getCitiesInCounty(cities, countyName) {
     return cities.features.filter(d => d.properties.county.toUpperCase() === countyName.toUpperCase())
 }
 
+export function getCountyForCity(cityName, citiesGeoJson, countiesGeoJson) {
+    const cities = citiesGeoJson.features.map(d => d.properties)
+    const city = cities.find(d => d.city === cityName)
+    const county = countiesGeoJson.features.find(d => d.properties.name === city.county)
+    return county
+}
+
 export function getCitiesInCountyAsGeoJson(cities, countyName){
     const inCounty = getCitiesInCounty(cities, countyName)
     return {

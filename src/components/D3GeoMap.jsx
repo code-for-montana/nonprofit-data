@@ -61,7 +61,8 @@ export const MapShapeLayer = (props) => {
         projection,
         shapeFeatures,
         featureStyler=defaultFeatureStyler,
-        onFeatureClick=(d => null)
+        onFeatureClick=(d => null),
+        isInteractive=false,
     } = props
     // shapeFeatures is array of geojson polygon features
     // featureStyler is function of feature data returning object with fill/stroke/etc.
@@ -75,6 +76,7 @@ export const MapShapeLayer = (props) => {
             ...defaultShapeStyle,
             ...featureStyler(feature.properties)
         }
+        const cursor = isInteractive ? { cursor: 'pointer' } : {pointerEvents: 'none'}
         return <path
             key={String(i)}
             className='map-shape'
@@ -84,6 +86,7 @@ export const MapShapeLayer = (props) => {
             {...style}
 
             // interactivity - pass feature data up to handler function
+            {...cursor}
             onClick={e => onFeatureClick(feature.properties)}
         />
     })
@@ -91,9 +94,7 @@ export const MapShapeLayer = (props) => {
     return <g className={`shape-layer`}>
         {paths}
     </g>
-    
 }
-
 
 const defaultMarkerStyle = {
     opacity: 1,
@@ -111,18 +112,22 @@ const defaultMarker = (d) => {
 }
 export const MapPointLayer = (props) => {
     // returns svg group with point features
+    // pointFeatures is array of geojson MultiPoint features
+    // See logic/convertFlatDataToGeojson for converting "flat" jsons
+    // markerGenerator is jsx function of feature data returning svg marker
+
     const {
         projection,
         pointFeatures,
         markerGenerator=defaultMarker,
         // interactivity
-        onFeatureClick=(d => null)
+        isInteractive=false,
+        onFeatureClick=(d => null) // default null function
     } = props
-    // pointFeatures is array of geojson MultiPoint features
-    // See logic/convertFlatDataToGeojson for converting "flat" jsons
-    // markerGenerator is jsx function of feature data returning svg marker
 
     const makeSVGPath = geoPath().projection(projection);
+
+    const cursor = isInteractive ? { cursor: 'pointer' } : {pointerEvents: 'none'}
 
     const markers = pointFeatures.map((feature, i) => {
         // const point = projection([d.longitude, d.latitude])
@@ -130,6 +135,7 @@ export const MapPointLayer = (props) => {
         return <g className={`marker-container`} key={String(i)}
             transform={`translate(${centroid[0]},${centroid[1]})`}
             onClick={d => onFeatureClick(feature.properties)}
+            { ...cursor }
         >
             {markerGenerator(feature)}
         </g>
@@ -138,12 +144,8 @@ export const MapPointLayer = (props) => {
     return <g className={`point-layer`}>
         {markers}
     </g>
-
 }
 
-export const MapMarker = (props) => {
-    const { featureData } = props
-}
 // TODO Marker options:
 // 1) circles w/ size encoded to values
 // 2) cluster of individual nonprofits

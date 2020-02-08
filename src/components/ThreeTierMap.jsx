@@ -11,6 +11,7 @@ import {
     getCitiesInCountyAsGeoJson,
     getNonprofitsInCity,
     getNonprofitsInCounty,
+    getCountyForCity,
     mergeInNonprofitsByCity,
     mergeInNonprofitsByCounty,
 } from '../logic/logic.js'
@@ -84,6 +85,8 @@ export default class ThreeTierMap extends Component {
             view = <CityTierMap
                 nonprofits={getNonprofitsInCity(nonprofits, cities, focusGeographyKey)}
                 city={focusGeographyKey}
+                county={getCountyForCity(focusGeographyKey, cities, counties)}
+                zoomToCounty={this.zoomToCounty}
             />
         } else {
             view = <div>Map state error: {viewLevel}, {focusGeographyKey}</div>
@@ -100,14 +103,27 @@ export default class ThreeTierMap extends Component {
 
 const rScaleState = scaleRadial().domain([0,200]).range([0,20])
 const markNumberOfNonprofitsState = (d) => {
-    return <circle cx={0} cy={0}
-        // onClick={e => console.log(d.properties)}
-        fill="#377eb8"
-        fillOpacity={0.8}
-        stroke="#377eb8"
-        strokeOpacity={1}
-        r={rScaleState(d.properties.nonprofits.length)}
-    />
+    return <g>
+            <circle cx={0} cy={0}
+                // onClick={e => console.log(d.properties)}
+                fill="#377eb8"
+                fillOpacity={0.8}
+                stroke="#377eb8"
+                strokeOpacity={1}
+                r={rScaleState(d.properties.nonprofits.length)}
+                cursor="pointer"
+            />
+            <text
+                textAnchor="middle"
+                dy="-0.3em"
+                fontSize={14}
+                // fontWeight="bold"
+                fill="#000"
+                pointerEvents='none'
+            >
+                {d.properties.nonprofits.length}
+            </text>
+        </g>
 }
 export const StateTierMap = (props) => {
     const {
@@ -122,6 +138,7 @@ export const StateTierMap = (props) => {
         <Map>
             <MapShapeLayer
                 shapeFeatures={counties.features}
+                isInteractive={true}
                 onFeatureClick={zoomToCounty}
             />
             <MapPointLayer
@@ -133,20 +150,34 @@ export const StateTierMap = (props) => {
 }
 
 const highlightCountyStyle = d => ({
-    fill: '#bbb',
+    fill: '#888',
     stroke: '#222',
     strokeWidth: 1.5,
 })
 const rScaleCounty = scaleRadial().domain([0,200]).range([0,40])
 const markNumberOfNonprofitsCounty = (d) => {
-    return <circle cx={0} cy={0}
-        // onClick={e => console.log(d.properties)}
-        fill="#377eb8"
-        fillOpacity={0.8}
-        stroke="#377eb8"
-        strokeOpacity={1}
-        r={rScaleCounty(d.properties.nonprofits.length)}
-    />
+    if (d.properties.nonprofits.length === 0) return <g></g>
+    return <g>
+        <circle cx={0} cy={0}
+            // onClick={e => console.log(d.properties)}
+            fill="#377eb8"
+            fillOpacity={0.8}
+            stroke="#377eb8"
+            strokeOpacity={1}
+            r={rScaleCounty(d.properties.nonprofits.length)}
+            cursor='pointer'
+        />
+        <text
+            textAnchor="middle"
+            dy="-0.25em"
+            fontSize={14}
+            // fontWeight="bold"
+            fill="#fff"
+            pointerEvents='none'
+        >
+            {d.properties.nonprofits.length}
+        </text>
+    </g>
 }
 export const CountyTierMap = (props) => {
     const {
@@ -173,6 +204,7 @@ export const CountyTierMap = (props) => {
             {/* Base layer */}
             <MapShapeLayer
                 shapeFeatures={counties.features}
+                isInteractive={true}
                 onFeatureClick={zoomToCounty}
             />
             {/* Selected county */}
@@ -184,6 +216,7 @@ export const CountyTierMap = (props) => {
             <MapPointLayer
                 pointFeatures={citiesWithNonprofitCounts.features}
                 markerGenerator={markNumberOfNonprofitsCounty}
+                isInteractive={true}
                 onFeatureClick={zoomToCity}
             />
         </Map>
@@ -191,20 +224,29 @@ export const CountyTierMap = (props) => {
 }
 
 export const CityTierMap = (props) => {
-    const {nonprofits, city} = props
+    const {
+        nonprofits,
+        city,
+        county,
+        zoomToCounty,
+    } = props
     return <div>
         <h3>City/town map view, {city}, {nonprofits.length} nonprofits</h3>
-        <div>TODO: Button move up to county</div>
-        <div>TODO: Button look at other cities in county</div>
-        <Chart width={600} height={400}>
-        <BubbleChartLayer
-            data={nonprofits}
-            sizeAccessor={d => 5}
-            bubbleLabler={
-                // d => `${d.NAME}`
-                d => ''
-            }
-        />
-    </Chart>
+        <button onClick={d => zoomToCounty(county.properties)}>
+            See {county.properties.name} County
+        </button>
+        <div>
+            <Chart width={600} height={400}>
+                <BubbleChartLayer
+                    data={nonprofits}
+                    sizeAccessor={d => 5}
+                    bubbleLabler={
+                        // d => `${d.NAME}`
+                        d => ''
+                    }
+                />
+            </Chart>
+        </div>
+        
     </div>
 }
