@@ -44,11 +44,11 @@ const layoutBubbleChart = (flatData, opts) => {
         width=300,
         height=300,
         padding=1.5,
-        sizeKey='value'
+        sizeAccessor=(d => d.value)
     } = opts
     
     const nodes = hierarchy({'children': flatData})
-        .sum(d => d[sizeKey]) // Indicate data field to use for size
+        .sum(sizeAccessor) // Indicate data field to use for size
     const bubbler = pack(nodes)
         .size([width, height]) // Set dimensions filled by bubble plot
         .padding(padding); // Set space between bubbles
@@ -57,7 +57,7 @@ const layoutBubbleChart = (flatData, opts) => {
     return bubbles    
 }
 
-const defaultShapeStyle = {
+const defaultBubbleStyle = {
     opacity: 1,
     fill: '#ddd',
     fillOpacity: 1,
@@ -65,29 +65,29 @@ const defaultShapeStyle = {
     strokeWidth: '1px',
     strokeOpacity: 1,
 }
-const defaultFeatureStyler = (d => ({}))
+const defaultBubbleStyler = (d => ({}))
 const numberFormat = format(',.0f') // whole numbers with commas
-const defaultBubbleLabeler = (d, sizeKey) => numberFormat(d[sizeKey]) // default label is field used for bubble size
+const defaultBubbleLabeler = (d, sizeAccessor) => numberFormat(sizeAccessor(d)) // default label is field used for bubble size
 
 export const BubbleChartLayer = (props) => {
     // Takes "flat" data array and returns svg circle bubbles as svg group
     const {
         data,
         dimensions, // supplied by SVG container
-        featureStyler=defaultFeatureStyler,
+        bubbleStyler=defaultBubbleStyler,
         bubbleLabler=defaultBubbleLabeler,
-        sizeKey='value'
+        sizeAccessor=(d => d.value) // accessor function for data field mapped to bubble size
     } = props
     const width = dimensions.plotWidth || 200
     const height = dimensions.plotHeight || 300
 
-    const bubbles = layoutBubbleChart(data, {width, height, sizeKey})
+    const bubbles = layoutBubbleChart(data, {width, height, sizeAccessor})
 
     const plottedBubbles = bubbles.map((bubble, i) => {
         const bubbleStyle = {
-            // use default style, unless provided featureStyler that sets individual styles based on data
-            ...defaultShapeStyle,
-            ...featureStyler(bubble.data)
+            // use default style, unless provided bubbleStyler function to set individual styles based on data
+            ...defaultBubbleStyle,
+            ...bubbleStyler(bubble.data)
         }
         return <g key={String(i)} transform={`translate(${bubble.x},${bubble.y})`}>
             <circle
@@ -99,7 +99,7 @@ export const BubbleChartLayer = (props) => {
             <text
                 text-anchor="middle"
                 dy='0.3em'>
-                {bubbleLabler(bubble.data, sizeKey)}
+                {bubbleLabler(bubble.data, sizeAccessor)}
             </text>
         </g>
     })

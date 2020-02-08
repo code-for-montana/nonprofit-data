@@ -5,6 +5,7 @@ import {
 } from 'd3-scale'
 
 import { Map, MapShapeLayer, MapPointLayer } from './D3GeoMap'
+import { Chart, BubbleChartLayer } from './D3BubbleChart'
 
 import {
     getCitiesInCountyAsGeoJson,
@@ -45,6 +46,7 @@ export default class ThreeTierMap extends Component {
                 nonprofits={nonprofits}
                 counties={counties}
                 cities={cities}
+                // onFeatureClick={e => console.log(e)} // handle click on specific county
             />
         } else if (viewLevel === 'county' && countyNames.includes(focusGeographyKey)) {
             return <CountyTierMap
@@ -76,13 +78,21 @@ const markNumberOfNonprofitsState = (d) => {
     />
 }
 export const StateTierMap = (props) => {
-    const { nonprofits, counties, cities } = props  
+    const {
+        nonprofits,
+        counties,
+        cities,
+        onFeatureClick
+    } = props  
     // const citiesWithNonprofitCounts = mergeInNonprofitsByCity(counties, nonprofits)  
     const countiesWithNonprofitCounts = mergeInNonprofitsByCounty(counties, nonprofits, cities)    
     return <div>
         <div>State map view, {nonprofits.length} nonprofits</div>
         <Map>
-            <MapShapeLayer shapeFeatures={counties.features} />
+            <MapShapeLayer
+                shapeFeatures={counties.features}
+                // onFeatureClick=
+            />
             <MapPointLayer
                 pointFeatures={countiesWithNonprofitCounts.features}
                 markerGenerator={markNumberOfNonprofitsState}
@@ -141,7 +151,20 @@ export const CountyTierMap = (props) => {
 
 export const CityTierMap = (props) => {
     const {nonprofits, city} = props
-    return <div>City/town map view, {city}, {nonprofits.length} nonprofits</div>
+    console.log(nonprofits)
+    return <div>
+        <div>City/town map view, {city}, {nonprofits.length} nonprofits</div>
+        <Chart width={600} height={400}>
+        <BubbleChartLayer
+            data={nonprofits}
+            sizeAccessor={d => 5}
+            bubbleLabler={
+                // d => `${d.NAME}`
+                d => ''
+            }
+        />
+    </Chart>
+    </div>
 }
 
 /* Three tiers
