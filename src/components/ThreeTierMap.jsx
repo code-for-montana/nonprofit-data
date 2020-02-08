@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 
-import {
-    scaleRadial
-} from 'd3-scale'
-
-import { Map, MapShapeLayer, MapPointLayer } from './D3GeoMap'
-import { Chart, BubbleChartLayer } from './D3BubbleChart'
+import StateTierMap from './ThreeTierMapState'
+import CountyTierMap from './ThreeTierMapCounty'
+import CityTierMap from './ThreeTierMapCity'
 
 import {
-    getCitiesInCountyAsGeoJson,
     getNonprofitsInCity,
     getNonprofitsInCounty,
     getCountyForCity,
-    mergeInNonprofitsByCity,
-    mergeInNonprofitsByCounty,
 } from '../logic/logic.js'
 
 /* MAP COMPONENTS */
@@ -89,6 +83,7 @@ export default class ThreeTierMap extends Component {
                 zoomToCounty={this.zoomToCounty}
             />
         } else {
+            // QUESTION: Ideal way to test for state errors?
             view = <div>Map state error: {viewLevel}, {focusGeographyKey}</div>
         }
 
@@ -99,154 +94,4 @@ export default class ThreeTierMap extends Component {
             {view}
         </div>
     }
-}
-
-const rScaleState = scaleRadial().domain([0,200]).range([0,20])
-const markNumberOfNonprofitsState = (d) => {
-    return <g>
-            <circle cx={0} cy={0}
-                // onClick={e => console.log(d.properties)}
-                fill="#377eb8"
-                fillOpacity={0.8}
-                stroke="#377eb8"
-                strokeOpacity={1}
-                r={rScaleState(d.properties.nonprofits.length)}
-                cursor="pointer"
-            />
-            <text
-                textAnchor="middle"
-                dy="-0.3em"
-                fontSize={14}
-                // fontWeight="bold"
-                fill="#000"
-                pointerEvents='none'
-            >
-                {d.properties.nonprofits.length}
-            </text>
-        </g>
-}
-export const StateTierMap = (props) => {
-    const {
-        nonprofits,
-        counties,
-        cities,
-        zoomToCounty
-    } = props
-    const countiesWithNonprofitCounts = mergeInNonprofitsByCounty(counties, nonprofits, cities)    
-    return <div>
-        <h3>State map view, {nonprofits.length} nonprofits</h3>
-        <Map>
-            <MapShapeLayer
-                shapeFeatures={counties.features}
-                isInteractive={true}
-                onFeatureClick={zoomToCounty}
-            />
-            <MapPointLayer
-                pointFeatures={countiesWithNonprofitCounts.features}
-                markerGenerator={markNumberOfNonprofitsState}
-            />
-        </Map>
-    </div>
-}
-
-const highlightCountyStyle = d => ({
-    fill: '#888',
-    stroke: '#222',
-    strokeWidth: 1.5,
-})
-const rScaleCounty = scaleRadial().domain([0,200]).range([0,40])
-const markNumberOfNonprofitsCounty = (d) => {
-    if (d.properties.nonprofits.length === 0) return <g></g>
-    return <g>
-        <circle cx={0} cy={0}
-            // onClick={e => console.log(d.properties)}
-            fill="#377eb8"
-            fillOpacity={0.8}
-            stroke="#377eb8"
-            strokeOpacity={1}
-            r={rScaleCounty(d.properties.nonprofits.length)}
-            cursor='pointer'
-        />
-        <text
-            textAnchor="middle"
-            dy="-0.25em"
-            fontSize={14}
-            // fontWeight="bold"
-            fill="#fff"
-            pointerEvents='none'
-        >
-            {d.properties.nonprofits.length}
-        </text>
-    </g>
-}
-export const CountyTierMap = (props) => {
-    const {
-        nonprofits,
-        county,
-        counties,
-        cities,
-        zoomToCounty,
-        zoomToCity,
-    } = props
-    
-    // Get Geojson structured object with just focus county
-    // Lets us tell map to zoom to that county
-    const currentCountyGeojson = {
-            type: "FeatureCollection",
-            features: [counties.features.find(d => d.properties.name === county)]
-    }
-    const citiesInCounty = getCitiesInCountyAsGeoJson(cities, county)
-    const citiesWithNonprofitCounts = mergeInNonprofitsByCity(citiesInCounty, nonprofits)
-
-    return <div>
-        <h3>County map view, {county}, {nonprofits.length} nonprofits</h3>
-        <Map scopeLayer={currentCountyGeojson}>
-            {/* Base layer */}
-            <MapShapeLayer
-                shapeFeatures={counties.features}
-                isInteractive={true}
-                onFeatureClick={zoomToCounty}
-            />
-            {/* Selected county */}
-            <MapShapeLayer
-                shapeFeatures={currentCountyGeojson.features}
-                featureStyler={highlightCountyStyle}
-            />
-            {/* City points */}
-            <MapPointLayer
-                pointFeatures={citiesWithNonprofitCounts.features}
-                markerGenerator={markNumberOfNonprofitsCounty}
-                isInteractive={true}
-                onFeatureClick={zoomToCity}
-            />
-        </Map>
-    </div>
-}
-
-export const CityTierMap = (props) => {
-    const {
-        nonprofits,
-        city,
-        county,
-        zoomToCounty,
-    } = props
-    return <div>
-        <h3>City/town map view, {city}, {nonprofits.length} nonprofits</h3>
-        <button onClick={d => zoomToCounty(county.properties)}>
-            See {county.properties.name} County
-        </button>
-        <div>
-            <Chart width={600} height={400}>
-                <BubbleChartLayer
-                    data={nonprofits}
-                    sizeAccessor={d => 5}
-                    bubbleLabler={
-                        // d => `${d.NAME}`
-                        d => ''
-                    }
-                />
-            </Chart>
-        </div>
-        
-    </div>
 }

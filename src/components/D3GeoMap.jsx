@@ -1,4 +1,19 @@
-import React, { Component } from 'react';
+/*
+
+(Hopefully) reusable D3-based react mapping components
+
+Three entities in here:
+- Map --> Container map object
+- MapShapeLayer --> Used for displaying shape/line data
+- MapPointLayer --> Used for displaying point data
+
+TODO:
+- Add optional tooltips
+- For interactive layers, add some sort of mouseover effect
+
+*/
+
+import React from 'react';
 
 import {
     geoPath,
