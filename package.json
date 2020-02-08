@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "d3-geo": "^1.11.9",
+    "d3-hierarchy": "^1.1.9",
     "d3-scale": "^3.2.1",
     "d3-scale-chromatic": "^1.5.0",
     "gatsby": "^2.18.3",

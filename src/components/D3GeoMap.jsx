@@ -36,8 +36,8 @@ export const Map = (props) => {
     );
 
     return <svg
-        width={600}
-        height={400}
+        width={width}
+        height={height}
         {...defaultMapConfig}
         style={{border: "1px solid #ddd"}}>
         <g transform={`translate(${margins.left}, ${margins.top})`}>   
@@ -66,6 +66,7 @@ export const MapShapeLayer = (props) => {
 
     const paths = shapeFeatures.map((feature, i) => {
         const style = {
+            // use default style unless provided featureStyler that sets individual styles based on data
             ...defaultShapeStyle,
             ...featureStyler(feature.properties)
         }
