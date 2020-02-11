@@ -4,9 +4,9 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-react-leaflet',
+      resolve: "gatsby-plugin-react-leaflet",
       options: {
-        linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
+        linkStyles: true, // (default: true) Enable/disable loading stylesheets via CDN
       },
     },
     `gatsby-plugin-react-helmet`,
@@ -28,7 +28,7 @@ module.exports = {
         background_color: `#984ea3`,
         theme_color: `#984ea3`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon-512.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
