@@ -9,7 +9,7 @@
     "d3-hierarchy": "^1.1.9",
     "d3-scale": "^3.2.1",
     "d3-scale-chromatic": "^1.5.0",
-    "gatsby": "^2.18.3",
+    "gatsby": "^4.25.7",
     "gatsby-image": "^2.2.33",
     "gatsby-plugin-manifest": "^2.2.29",
     "gatsby-plugin-offline": "^3.0.23",
